@@ -19,24 +19,36 @@ export default function ResiliencePlanPage() {
     async function fetchData() {
       try {
         const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
+        const { data: businesses } = await supabase.from('businesses').select('*');
 
-        let profileData = null;
+        if (businesses && businesses.length > 0) {
+          const bizIds = businesses.map(b => b.id);
+          const { data: assessments } = await supabase.from('assessments').select('*').in('business_id', bizIds);
+          const { data: projects } = await supabase.from('projects').select('*').in('business_id', bizIds);
 
-        if (user) {
-          const { data: existingProfile } = await supabase.from('msme_profiles').select('id').eq('user_id', user.id).maybeSingle();
-          if (existingProfile) profileData = existingProfile;
-        } else {
-          const { data: fallbackProfile } = await supabase.from('msme_profiles').select('id').limit(1).maybeSingle();
-          if (fallbackProfile) profileData = fallbackProfile;
-        }
+          let totalRevenue = 0;
+          let avgExposure = 0;
+          if (assessments && assessments.length > 0) {
+            totalRevenue = assessments.reduce((acc, a) => acc + (Number(a.annual_revenue) || 0), 0);
+            avgExposure = assessments.reduce((acc, a) => acc + (a.climate_exposure_score || 0), 0) / assessments.length;
+          }
 
-        if (profileData) {
-          const { data: assessment } = await supabase.from('assessments').select('*').eq('msme_id', profileData.id).maybeSingle();
-          if (assessment) setData(assessment);
+          let totalSavings = 0;
+          if (projects && projects.length > 0) {
+            totalSavings = projects.reduce((acc, p) => acc + (Number(p.annual_savings_estimate) || 0), 0);
+          }
+
+          // Calculate baseline as 15% of revenue scaled by exposure risk
+          const baseline = totalRevenue * 0.15 * (avgExposure / 100);
+          const mitigated = Math.max(0, baseline - totalSavings);
+
+          setData({
+            baseline_exposure_inr: baseline || 210000,
+            mitigated_exposure_inr: mitigated || 70000
+          });
         }
       } catch (err) {
-        console.log("Using robust fallback data");
+        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -46,15 +58,14 @@ export default function ResiliencePlanPage() {
 
   if (loading) return <div className="flex-1 flex items-center justify-center h-[60vh]"><Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" /></div>;
 
-  // Format to Lakhs for display (e.g., 210000 -> 2.1)
-  const baselineLakhs = (data.baseline_exposure_inr / 100000).toFixed(1);
-  const mitigatedLakhs = (data.mitigated_exposure_inr / 100000).toFixed(1);
+  const baselineMillions = (data.baseline_exposure_inr / 1000000).toFixed(2);
+  const mitigatedMillions = (data.mitigated_exposure_inr / 1000000).toFixed(2);
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-5xl mx-auto pb-12">
       <div>
         <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2 text-white">What happens if the climate shock actually occurs?</h1>
-        <p className="text-zinc-400 max-w-3xl">Illustrative scenario simulation based on assumed business conditions. See how taking action changes your financial outcome.</p>
+        <p className="text-zinc-400 max-w-3xl">Illustrative scenario simulation based on your uploaded business conditions. See how taking action changes your financial outcome.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-8 relative">
@@ -73,7 +84,7 @@ export default function ResiliencePlanPage() {
               
               <div className="flex items-center gap-3">
                 <AlertTriangle className="w-6 h-6 text-red-500" />
-                <h3 className="text-xl font-bold text-white">45°C Heatwave Scenario</h3>
+                <h3 className="text-xl font-bold text-white">Extreme Weather Scenario</h3>
               </div>
               
               <ul className="space-y-4 text-zinc-300 font-medium">
@@ -90,7 +101,7 @@ export default function ResiliencePlanPage() {
 
               <div className="pt-6 mt-6 border-t border-red-500/30">
                 <p className="text-sm text-zinc-400 mb-2 font-medium">Estimated financial exposure:</p>
-                <div className="text-6xl font-black text-red-500">₹{baselineLakhs}L<span className="text-lg text-red-500/50 align-top">*</span></div>
+                <div className="text-6xl font-black text-red-500">${baselineMillions}M<span className="text-lg text-red-500/50 align-top">*</span></div>
               </div>
               
             </CardContent>
@@ -131,7 +142,7 @@ export default function ResiliencePlanPage() {
 
               <div className="pt-6 mt-6 border-t border-green-500/30">
                 <p className="text-sm text-zinc-400 mb-2 font-medium">Estimated exposure:</p>
-                <div className="text-6xl font-black text-green-500">₹{mitigatedLakhs}L<span className="text-lg text-green-500/50 align-top">*</span></div>
+                <div className="text-6xl font-black text-green-500">${mitigatedMillions}M<span className="text-lg text-green-500/50 align-top">*</span></div>
               </div>
               
             </div>

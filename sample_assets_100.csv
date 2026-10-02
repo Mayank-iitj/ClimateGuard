@@ -1,0 +1,101 @@
+Facility_Name,Industry_Type,City,State,Annual_Revenue,Monthly_Electricity_Cost,Backup_Power_Type
+Indore Logistics Hub 1,Logistics,Indore,MP,4663035,7232,Solar + Battery
+Bhopal Agriculture Hub 2,Agriculture,Bhopal,MP,7671649,207005,Gas Generator
+Thane Automotive Hub 3,Automotive,Thane,MH,44557989,36882,Grid Only
+Kanpur Textiles Hub 4,Textiles,Kanpur,UP,20827438,102676,Gas Generator
+Surat Food Processing Hub 5,Food Processing,Surat,GJ,8562942,172328,Gas Generator
+Visakhapatnam Agriculture Hub 6,Agriculture,Visakhapatnam,AP,16004239,163471,Gas Generator
+Hyderabad IT/ITeS Hub 7,IT/ITeS,Hyderabad,TG,17131538,177913,Diesel Genset
+Chennai IT/ITeS Hub 8,IT/ITeS,Chennai,TN,16911902,138034,Diesel Genset
+Hyderabad Food Processing Hub 9,Food Processing,Hyderabad,TG,6365764,97411,UPS Backup
+Mumbai Retail Hub 10,Retail,Mumbai,MH,19286813,15613,UPS Backup
+Kanpur Food Processing Hub 11,Food Processing,Kanpur,UP,8784474,95596,Grid Only
+Surat Agriculture Hub 12,Agriculture,Surat,GJ,37236123,135762,Gas Generator
+Nagpur Pharmaceuticals Hub 13,Pharmaceuticals,Nagpur,MH,1628907,120688,Diesel Genset
+Vadodara Automotive Hub 14,Automotive,Vadodara,GJ,10732062,29588,UPS Backup
+Nagpur Pharmaceuticals Hub 15,Pharmaceuticals,Nagpur,MH,17792774,95183,Solar + Battery
+Bhopal Manufacturing Hub 16,Manufacturing,Bhopal,MP,9880112,120366,UPS Backup
+Vadodara Retail Hub 17,Retail,Vadodara,GJ,15162651,144442,Diesel Genset
+Pune Food Processing Hub 18,Food Processing,Pune,MH,28143083,236379,Grid Only
+Surat Chemicals Hub 19,Chemicals,Surat,GJ,31521733,47884,Grid Only
+Ahmedabad Food Processing Hub 20,Food Processing,Ahmedabad,GJ,44820394,146799,Gas Generator
+Mumbai IT/ITeS Hub 21,IT/ITeS,Mumbai,MH,24292658,170195,Gas Generator
+Vadodara Logistics Hub 22,Logistics,Vadodara,GJ,11945126,45487,Diesel Genset
+Ahmedabad Manufacturing Hub 23,Manufacturing,Ahmedabad,GJ,5363650,141206,Diesel Genset
+Thane Food Processing Hub 24,Food Processing,Thane,MH,47168368,137921,Diesel Genset
+Hyderabad Automotive Hub 25,Automotive,Hyderabad,TG,27261596,91109,UPS Backup
+Nagpur Manufacturing Hub 26,Manufacturing,Nagpur,MH,5880364,184297,Diesel Genset
+Jaipur Logistics Hub 27,Logistics,Jaipur,RJ,6691379,137496,Gas Generator
+Thane Logistics Hub 28,Logistics,Thane,MH,30318949,34370,Diesel Genset
+Surat Chemicals Hub 29,Chemicals,Surat,GJ,39370862,193415,Solar + Battery
+Nagpur Automotive Hub 30,Automotive,Nagpur,MH,13185761,212664,Diesel Genset
+Visakhapatnam Automotive Hub 31,Automotive,Visakhapatnam,AP,10832779,153763,Gas Generator
+Vadodara Automotive Hub 32,Automotive,Vadodara,GJ,7148613,141921,Solar + Battery
+Ahmedabad Pharmaceuticals Hub 33,Pharmaceuticals,Ahmedabad,GJ,43602567,173915,Diesel Genset
+Hyderabad Retail Hub 34,Retail,Hyderabad,TG,41350775,122889,UPS Backup
+Thane Agriculture Hub 35,Agriculture,Thane,MH,3697002,77942,Diesel Genset
+Mumbai Retail Hub 36,Retail,Mumbai,MH,22428800,65180,Grid Only
+Kanpur Agriculture Hub 37,Agriculture,Kanpur,UP,5252547,206661,Gas Generator
+Delhi Manufacturing Hub 38,Manufacturing,Delhi,DL,47850949,248879,Diesel Genset
+Nagpur Pharmaceuticals Hub 39,Pharmaceuticals,Nagpur,MH,1149072,21648,Grid Only
+Delhi Textiles Hub 40,Textiles,Delhi,DL,28501708,216904,Solar + Battery
+Patna Retail Hub 41,Retail,Patna,BR,19327782,90005,Solar + Battery
+Jaipur Logistics Hub 42,Logistics,Jaipur,RJ,31852764,170555,Diesel Genset
+Indore Agriculture Hub 43,Agriculture,Indore,MP,11880547,228751,Grid Only
+Jaipur Automotive Hub 44,Automotive,Jaipur,RJ,35937222,102867,Grid Only
+Kolkata Textiles Hub 45,Textiles,Kolkata,WB,21845207,209487,Solar + Battery
+Patna Pharmaceuticals Hub 46,Pharmaceuticals,Patna,BR,15342183,117499,Solar + Battery
+Jaipur IT/ITeS Hub 47,IT/ITeS,Jaipur,RJ,17955840,58416,UPS Backup
+Visakhapatnam Food Processing Hub 48,Food Processing,Visakhapatnam,AP,30403036,132709,Grid Only
+Bhopal IT/ITeS Hub 49,IT/ITeS,Bhopal,MP,26520959,178094,Gas Generator
+Pune Manufacturing Hub 50,Manufacturing,Pune,MH,24783282,228592,Diesel Genset
+Nagpur IT/ITeS Hub 51,IT/ITeS,Nagpur,MH,38850235,166314,Solar + Battery
+Surat Pharmaceuticals Hub 52,Pharmaceuticals,Surat,GJ,6736497,195044,Diesel Genset
+Thane Logistics Hub 53,Logistics,Thane,MH,3036128,206185,Grid Only
+Vadodara IT/ITeS Hub 54,IT/ITeS,Vadodara,GJ,44220437,174269,Solar + Battery
+Hyderabad Chemicals Hub 55,Chemicals,Hyderabad,TG,26757281,204735,UPS Backup
+Delhi Logistics Hub 56,Logistics,Delhi,DL,21519966,6434,UPS Backup
+Pune Retail Hub 57,Retail,Pune,MH,46824404,143358,Diesel Genset
+Ghaziabad Chemicals Hub 58,Chemicals,Ghaziabad,UP,7955376,18532,Grid Only
+Bangalore Agriculture Hub 59,Agriculture,Bangalore,KA,20438562,30934,Gas Generator
+Indore Logistics Hub 60,Logistics,Indore,MP,3677086,233310,UPS Backup
+Bhopal Manufacturing Hub 61,Manufacturing,Bhopal,MP,22504976,93387,Solar + Battery
+Mumbai Retail Hub 62,Retail,Mumbai,MH,26470183,130625,UPS Backup
+Thane Agriculture Hub 63,Agriculture,Thane,MH,40162458,235140,Grid Only
+Vadodara Agriculture Hub 64,Agriculture,Vadodara,GJ,47557847,10333,Gas Generator
+Ahmedabad Automotive Hub 65,Automotive,Ahmedabad,GJ,45533018,211072,Gas Generator
+Thane Retail Hub 66,Retail,Thane,MH,49720942,102550,Grid Only
+Patna IT/ITeS Hub 67,IT/ITeS,Patna,BR,38731063,106478,Gas Generator
+Jaipur Textiles Hub 68,Textiles,Jaipur,RJ,33877156,150456,UPS Backup
+Surat Automotive Hub 69,Automotive,Surat,GJ,45904139,210899,Grid Only
+Chennai Retail Hub 70,Retail,Chennai,TN,7828130,41924,Diesel Genset
+Bangalore Manufacturing Hub 71,Manufacturing,Bangalore,KA,27698396,230617,Grid Only
+Patna Automotive Hub 72,Automotive,Patna,BR,9533169,111858,Diesel Genset
+Ahmedabad IT/ITeS Hub 73,IT/ITeS,Ahmedabad,GJ,3471297,226607,UPS Backup
+Thane Textiles Hub 74,Textiles,Thane,MH,22757265,146125,UPS Backup
+Ahmedabad IT/ITeS Hub 75,IT/ITeS,Ahmedabad,GJ,23227103,248644,Solar + Battery
+Ghaziabad Pharmaceuticals Hub 76,Pharmaceuticals,Ghaziabad,UP,45394520,165249,Grid Only
+Thane Chemicals Hub 77,Chemicals,Thane,MH,39768064,219839,Solar + Battery
+Lucknow Automotive Hub 78,Automotive,Lucknow,UP,38904069,125400,Grid Only
+Thane Manufacturing Hub 79,Manufacturing,Thane,MH,25472988,81120,UPS Backup
+Hyderabad Manufacturing Hub 80,Manufacturing,Hyderabad,TG,18155953,135221,Grid Only
+Surat Food Processing Hub 81,Food Processing,Surat,GJ,7384226,107232,UPS Backup
+Chennai Food Processing Hub 82,Food Processing,Chennai,TN,10381325,93242,Gas Generator
+Nagpur IT/ITeS Hub 83,IT/ITeS,Nagpur,MH,32952163,140040,Diesel Genset
+Lucknow Chemicals Hub 84,Chemicals,Lucknow,UP,5375652,66702,Grid Only
+Jaipur Retail Hub 85,Retail,Jaipur,RJ,46719888,180200,Grid Only
+Bhopal Agriculture Hub 86,Agriculture,Bhopal,MP,5882279,8849,Gas Generator
+Vadodara Textiles Hub 87,Textiles,Vadodara,GJ,2752750,10262,Grid Only
+Visakhapatnam Food Processing Hub 88,Food Processing,Visakhapatnam,AP,37781435,178109,Grid Only
+Surat IT/ITeS Hub 89,IT/ITeS,Surat,GJ,28995030,44712,Diesel Genset
+Nagpur Pharmaceuticals Hub 90,Pharmaceuticals,Nagpur,MH,41906337,114367,Solar + Battery
+Delhi Automotive Hub 91,Automotive,Delhi,DL,42132414,173944,Grid Only
+Ahmedabad Textiles Hub 92,Textiles,Ahmedabad,GJ,26810036,162354,Grid Only
+Vadodara Food Processing Hub 93,Food Processing,Vadodara,GJ,41473135,77085,Grid Only
+Bhopal Retail Hub 94,Retail,Bhopal,MP,2911568,91306,Solar + Battery
+Ahmedabad IT/ITeS Hub 95,IT/ITeS,Ahmedabad,GJ,28467303,93680,Solar + Battery
+Visakhapatnam Manufacturing Hub 96,Manufacturing,Visakhapatnam,AP,24275305,242309,Solar + Battery
+Patna IT/ITeS Hub 97,IT/ITeS,Patna,BR,14516747,65501,Diesel Genset
+Surat Logistics Hub 98,Logistics,Surat,GJ,6540243,39350,Gas Generator
+Bangalore Agriculture Hub 99,Agriculture,Bangalore,KA,35879691,144856,UPS Backup
+Bhopal Chemicals Hub 100,Chemicals,Bhopal,MP,26319003,80899,Grid Only

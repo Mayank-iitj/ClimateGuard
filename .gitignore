@@ -22,8 +22,9 @@
 
 # misc
 .DS_Store
-*.pem
-
+*.pem# Supabase
+supabase/.temp
+supabase/.branches
 # debug
 npm-debug.log*
 yarn-debug.log*

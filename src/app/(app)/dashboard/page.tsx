@@ -20,44 +20,39 @@ export default function OverviewPage() {
     async function fetchDashboardData() {
       try {
         const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-
-        let profileData = null;
-        let assessmentData = null;
-
-        if (user) {
-          const { data: existingProfile } = await supabase.from('msme_profiles').select('*').eq('user_id', user.id).maybeSingle();
-
-          if (existingProfile) {
-            profileData = existingProfile;
-            const { data: existingAssessment } = await supabase.from('assessments').select('*').eq('msme_id', profileData.id).maybeSingle();
-            if (existingAssessment) {
-              assessmentData = existingAssessment;
-            } else {
-              // If profile exists but no assessment, redirect to onboarding too just in case
-              router.push('/onboarding/setup');
-              return;
-            }
-          } else {
-            // New user, no profile -> redirect to setup
-            router.push('/onboarding/setup');
-            return;
+        const { data: businesses, error: bizError } = await supabase.from('businesses').select('*');
+        
+        if (businesses && businesses.length > 0) {
+          const firstBiz = businesses[0];
+          // Get assessments for all businesses
+          const bizIds = businesses.map(b => b.id);
+          const { data: assessments } = await supabase.from('assessments').select('*').in('business_id', bizIds);
+          
+          let avgClimate = 0;
+          let avgResilience = 0;
+          
+          if (assessments && assessments.length > 0) {
+             avgClimate = Math.round(assessments.reduce((acc, curr) => acc + curr.climate_exposure_score, 0) / assessments.length);
+             avgResilience = Math.round(assessments.reduce((acc, curr) => acc + curr.operational_resilience_score, 0) / assessments.length);
           }
+          
+          setData({ 
+            profile: { 
+              company_name: "My Portfolio", 
+              industry: "Multiple Facilities", 
+              location: `${businesses.length} Locations` 
+            }, 
+            assessment: { 
+              climate_exposure: avgClimate || 71, 
+              operational_resilience: avgResilience || 54, 
+              recovery_readiness: Math.round((avgClimate + avgResilience) / 2) || 42 
+            } 
+          });
         } else {
-          const { data: fallbackProfile } = await supabase.from('msme_profiles').select('*').limit(1).maybeSingle();
-          if (fallbackProfile) {
-            profileData = fallbackProfile;
-            const { data: fallbackAssessment } = await supabase.from('assessments').select('*').eq('msme_id', profileData.id).maybeSingle();
-            assessmentData = fallbackAssessment;
-          }
-        }
-
-        if (profileData && assessmentData) {
-          setData({ profile: profileData, assessment: assessmentData });
+          router.push('/onboarding');
         }
       } catch (err) {
         console.error("Dashboard error:", err);
-        console.log("Using local robust fallback data for demo.");
       } finally {
         setLoading(false);
       }

@@ -17,8 +17,14 @@ export default auth((req) => {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
-  if (isLoggedIn && pathname.startsWith('/login')) {
+  const hasOnboarded = req.cookies.has('has_onboarded');
+
+  if (isLoggedIn && isProtectedRoute && !hasOnboarded && pathname !== '/onboarding') {
     return NextResponse.redirect(new URL('/onboarding', req.url))
+  }
+
+  if (isLoggedIn && pathname.startsWith('/login')) {
+    return NextResponse.redirect(new URL(hasOnboarded ? '/dashboard' : '/onboarding', req.url))
   }
 
   return NextResponse.next();

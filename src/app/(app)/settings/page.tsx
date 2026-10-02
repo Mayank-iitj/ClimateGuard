@@ -31,26 +31,16 @@ export default function SettingsPage() {
             lastName: names.slice(1).join(' ') || 'User',
             email: user.email || 'demo@climateguard.app'
           });
+        }
 
-          const { data, error } = await supabase.from('msme_profiles').select('*').eq('user_id', user.id).maybeSingle();
-          if (data && !error) {
-            setProfileId(data.id);
-            setProfileData({
-              company_name: data.company_name,
-              industry: data.industry,
-              location: data.location
-            });
-          }
-        } else {
-          const { data, error } = await supabase.from('msme_profiles').select('*').limit(1).maybeSingle();
-          if (data && !error) {
-            setProfileId(data.id);
-            setProfileData({
-              company_name: data.company_name,
-              industry: data.industry,
-              location: data.location
-            });
-          }
+        const { data, error } = await supabase.from('businesses').select('*');
+        if (data && data.length > 0 && !error) {
+          setProfileId(data[0].id);
+          setProfileData({
+            company_name: "My Portfolio",
+            industry: data[0].industry,
+            location: `${data.length} Facilities`
+          });
         }
       } catch (err) {
         console.error("Could not fetch profile", err);

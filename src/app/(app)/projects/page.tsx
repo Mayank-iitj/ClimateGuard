@@ -24,28 +24,29 @@ export default function ProjectsPage() {
     async function fetchProjects() {
       try {
         const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        let query = supabase.from('projects').select('*');
-        if (user) {
-          query = query.eq('user_id', user.id);
-        }
+        const { data, error } = await supabase.from('projects').select('*, businesses(name, city)');
         
-        const { data, error } = await query;
         if (data && data.length > 0 && !error) {
           // Map DB records to the UI format
           const mapped = data.map(p => ({
-            ...p,
-            icon: p.type === 'Data Center' ? <Server className="w-5 h-5 text-cyan-400" /> :
-                  p.type === 'Industrial' ? <Factory className="w-5 h-5 text-amber-400" /> :
-                  p.type === 'Commercial' ? <Building2 className="w-5 h-5 text-emerald-400" /> :
+            id: p.id.split('-')[0].toUpperCase(),
+            name: p.businesses?.name || p.title,
+            type: p.title,
+            status: p.status,
+            risk: p.exposure_reduction_pct > 25 ? 'Low' : p.exposure_reduction_pct > 15 ? 'Medium' : 'High',
+            value: `$${((p.capex_estimate || 0) / 1000000).toFixed(1)}M`,
+            icon: p.title.includes('Data') ? <Server className="w-5 h-5 text-cyan-400" /> :
+                  p.title.includes('Sensor') ? <Server className="w-5 h-5 text-amber-400" /> :
+                  p.title.includes('Efficiency') ? <Factory className="w-5 h-5 text-emerald-400" /> :
                   <Anchor className="w-5 h-5 text-fuchsia-400" />
           }));
           setProjects(mapped);
         } else {
-          setProjects(fallbackProjects);
+          setProjects([]);
         }
       } catch (e) {
-        setProjects(fallbackProjects);
+        console.error(e);
+        setProjects([]);
       } finally {
         setLoading(false);
       }

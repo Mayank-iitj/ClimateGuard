@@ -1,15 +1,46 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { ThermometerSun, Waves, Wind } from "lucide-react";
+import { ThermometerSun, Waves, Wind, Loader2 } from "lucide-react";
 import BorderGlow from "@/components/ui/border-glow";
+import { createClient } from "@/utils/supabase/client";
 
 export default function StressTestPage() {
   const [investment, setInvestment] = useState(20); // $M
   const [damages, setDamages] = useState(10); // $M per year
   const [timeline, setTimeline] = useState(5); // years
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchBaselineData() {
+      try {
+        const supabase = createClient();
+        
+        // Fetch all projects for capex calculation
+        const { data: projects } = await supabase.from('projects').select('capex_estimate');
+        if (projects && projects.length > 0) {
+          const totalCapex = projects.reduce((acc, p) => acc + (p.capex_estimate || 0), 0);
+          setInvestment(Math.max(5, Math.round(totalCapex / 1000000))); // Default to total capex in millions
+        }
+
+        // Fetch impact entries for historical damage
+        const { data: impacts } = await supabase.from('impact_entries').select('energy_cost, downtime_hours');
+        if (impacts && impacts.length > 0) {
+          const totalEnergyCost = impacts.reduce((acc, i) => acc + (i.energy_cost || 0), 0);
+          // Just a proxy calculation: annualized cost + some downtime factor in Millions
+          const annualizedDamage = Math.max(1, Math.round(((totalEnergyCost * 2) + (impacts.length * 5000)) / 100000));
+          setDamages(annualizedDamage);
+        }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchBaselineData();
+  }, []);
 
   const chartData = useMemo(() => {
     const data = [];
@@ -32,11 +63,19 @@ export default function StressTestPage() {
     return data;
   }, [investment, damages, timeline]);
 
+  if (loading) {
+    return (
+      <div className="flex-1 flex items-center justify-center h-[60vh]">
+        <Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-6xl mx-auto pb-12">
       <div>
         <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Financial ROI & Impact Calculator</h1>
-        <p className="text-zinc-400">Calculate the exact financial return of climate resilience investments for MSME portfolios.</p>
+        <p className="text-zinc-400">Calculate the exact financial return of climate resilience investments based on your uploaded portfolio.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -45,7 +84,7 @@ export default function StressTestPage() {
           <Card className="bg-[#0c0c10]/80 border-fuchsia-500/20 backdrop-blur-md shadow-[0_0_30px_rgba(236,72,153,0.1)]">
             <CardHeader>
               <CardTitle className="text-white">Investment Variables</CardTitle>
-              <CardDescription className="text-zinc-400">Adjust sliders to simulate financial ROI</CardDescription>
+              <CardDescription className="text-zinc-400">Adjust sliders from your DB baseline</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
               
@@ -58,13 +97,13 @@ export default function StressTestPage() {
                 </div>
                 <input 
                   type="range" 
-                  min="5" max="100" step="5" 
+                  min="1" max="100" step="1" 
                   value={investment} 
                   onChange={(e) => setInvestment(parseFloat(e.target.value))}
                   className="w-full accent-fuchsia-500" 
                 />
                 <div className="flex justify-between text-xs text-zinc-500">
-                  <span>$5M</span>
+                  <span>$1M</span>
                   <span>$100M</span>
                 </div>
               </div>
