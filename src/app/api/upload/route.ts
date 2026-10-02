@@ -37,44 +37,96 @@ export async function POST(req: Request) {
     // 2. Prepare all child records
     for (let i = 0; i < records.length; i++) {
       const record = records[i];
-      const business = businesses[i]; // assuming same order, but safer to match by name if possible. supabase returns in order for bulk inserts.
+      const business = businesses[i];
+
+      // --- CUSTOM ALGORITHM: CLIMATE EXPOSURE SCORE ---
+      let climateScore = 50; // Base score
+      const coastalStates = ['MH', 'GJ', 'TN', 'AP', 'WB', 'OR', 'KL', 'KA'];
+      const heatStates = ['RJ', 'DL', 'UP', 'MP', 'HR', 'PB'];
+      
+      if (coastalStates.includes(record.State)) climateScore += 25; // Cyclone/Flood risk
+      if (heatStates.includes(record.State)) climateScore += 20; // Heatwave risk
+
+      // --- CUSTOM ALGORITHM: OPERATIONAL RESILIENCE SCORE ---
+      let resilienceScore = 50;
+      if (record.Backup_Power_Type === 'Grid Only') resilienceScore -= 30;
+      else if (record.Backup_Power_Type === 'Solar + Battery') resilienceScore += 35;
+      else if (record.Backup_Power_Type === 'Diesel Genset') resilienceScore += 10;
+      else resilienceScore += 20; // UPS / Gas
+
+      if (['IT/ITeS', 'Pharmaceuticals', 'Manufacturing'].includes(record.Industry_Type)) {
+        resilienceScore -= 10; // Highly sensitive to downtime
+      }
+
+      // Ensure bounds
+      climateScore = Math.min(100, Math.max(0, climateScore));
+      resilienceScore = Math.min(100, Math.max(0, resilienceScore));
 
       assessmentsToInsert.push({
         business_id: business.id,
         annual_revenue: parseFloat(record.Annual_Revenue) || 0,
         monthly_electricity_cost: parseFloat(record.Monthly_Electricity_Cost) || 0,
         backup_power_type: record.Backup_Power_Type,
-        climate_exposure_score: Math.floor(Math.random() * 50) + 40,
-        operational_resilience_score: Math.floor(Math.random() * 50) + 30
+        climate_exposure_score: climateScore,
+        operational_resilience_score: resilienceScore
       });
 
+      // --- CUSTOM ALGORITHM: IMPACT ENTRIES (Historical Cost Modeling) ---
+      const baseElec = parseFloat(record.Monthly_Electricity_Cost) || 1000;
       for (let j = 0; j < 6; j++) {
         const d = new Date();
         d.setMonth(d.getMonth() - j);
+        
+        // Simulate seasonal variations based on state (e.g., summer heatwaves increase AC loads)
+        const isSummer = (d.getMonth() >= 3 && d.getMonth() <= 6); 
+        const heatMultiplier = (isSummer && heatStates.includes(record.State)) ? 1.4 : 1.0;
+        
+        // Simulate grid failures causing downtime if they lack good backup
+        const gridFails = (record.Backup_Power_Type === 'Grid Only') ? Math.floor(Math.random() * 8) + 2 : 0;
+
         impactsToInsert.push({
           business_id: business.id,
           entry_month: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`,
-          energy_cost: (parseFloat(record.Monthly_Electricity_Cost) || 1000) * (0.8 + Math.random() * 0.4),
-          downtime_hours: Math.floor(Math.random() * 12)
+          energy_cost: baseElec * heatMultiplier * (0.9 + Math.random() * 0.2), // +/- 10% variance
+          downtime_hours: gridFails
         });
       }
 
-      projectsToInsert.push({
-        business_id: business.id,
-        title: 'Cooling Optimization',
-        status: 'Evaluating',
-        capex_estimate: 250000,
-        annual_savings_estimate: 50000,
-        exposure_reduction_pct: 15
-      });
-      projectsToInsert.push({
-        business_id: business.id,
-        title: 'Flood Mitigation Barriers',
-        status: 'Implementation',
-        capex_estimate: 600000,
-        annual_savings_estimate: 120000,
-        exposure_reduction_pct: 35
-      });
+      // --- CUSTOM ALGORITHM: GENERATE TAILORED PROJECTS ---
+      // Project 1: Address Power Backup if weak
+      if (record.Backup_Power_Type === 'Grid Only' || record.Backup_Power_Type === 'Diesel Genset') {
+        const capex = baseElec * 12 * 2; // Assume 2-year energy bill for Solar Capex
+        projectsToInsert.push({
+          business_id: business.id,
+          title: 'Solar PV + Battery Energy Storage',
+          status: 'Finance-ready',
+          capex_estimate: capex,
+          annual_savings_estimate: baseElec * 12 * 0.4, // Save 40% of grid bill
+          exposure_reduction_pct: 40
+        });
+      }
+
+      // Project 2: Address Geography Risks
+      const revenue = parseFloat(record.Annual_Revenue) || 100000;
+      if (coastalStates.includes(record.State)) {
+        projectsToInsert.push({
+          business_id: business.id,
+          title: 'Perimeter Flood Barriers & Drainage',
+          status: 'Evaluating',
+          capex_estimate: revenue * 0.05, // 5% of revenue
+          annual_savings_estimate: revenue * 0.02, // Avoided losses
+          exposure_reduction_pct: 25
+        });
+      } else if (heatStates.includes(record.State)) {
+         projectsToInsert.push({
+          business_id: business.id,
+          title: 'Industrial HVAC & Thermal Insulation',
+          status: 'Implementation',
+          capex_estimate: revenue * 0.03,
+          annual_savings_estimate: baseElec * 12 * 0.15, // 15% energy savings
+          exposure_reduction_pct: 20
+        });
+      }
     }
 
     // 3. Bulk Insert child records

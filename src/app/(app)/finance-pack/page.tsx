@@ -26,24 +26,42 @@ export default function FinancePackPage() {
     async function fetchData() {
       try {
         const supabase = createClient();
-        const { data: { user } } = await supabase.auth.getUser();
+        const { data: businesses } = await supabase.from('businesses').select('*');
 
-        let profileData = null;
+        if (businesses && businesses.length > 0) {
+          const bizIds = businesses.map(b => b.id);
+          const { data: assessments } = await supabase.from('assessments').select('*').in('business_id', bizIds);
+          const { data: projects } = await supabase.from('projects').select('*').in('business_id', bizIds);
 
-        if (user) {
-          const { data: existingProfile } = await supabase.from('msme_profiles').select('*').eq('user_id', user.id).maybeSingle();
-          if (existingProfile) profileData = existingProfile;
-        } else {
-          const { data: fallbackProfile } = await supabase.from('msme_profiles').select('*').limit(1).maybeSingle();
-          if (fallbackProfile) profileData = fallbackProfile;
-        }
+          let totalRevenue = 0;
+          let avgExposure = 0;
+          if (assessments && assessments.length > 0) {
+            totalRevenue = assessments.reduce((acc, a) => acc + (Number(a.annual_revenue) || 0), 0);
+            avgExposure = assessments.reduce((acc, a) => acc + (a.climate_exposure_score || 0), 0) / assessments.length;
+          }
 
-        if (profileData) {
-          const { data: assessment } = await supabase.from('assessments').select('*').eq('msme_id', profileData.id).maybeSingle();
-          if (assessment) setData({ profile: profileData, assessment });
+          let requiredCapital = 0;
+          let totalSavings = 0;
+          if (projects && projects.length > 0) {
+            requiredCapital = projects.reduce((acc, p) => acc + (Number(p.capex_estimate) || 0), 0);
+            totalSavings = projects.reduce((acc, p) => acc + (Number(p.annual_savings_estimate) || 0), 0);
+          }
+
+          const baseline = totalRevenue * 0.15 * (avgExposure / 100);
+          const mitigated = Math.max(0, baseline - totalSavings);
+
+          setData({
+            profile: { company_name: "My Portfolio" },
+            assessment: {
+              baseline_exposure_inr: baseline,
+              mitigated_exposure_inr: mitigated,
+              required_capital_inr: requiredCapital
+            },
+            projects: projects ? projects.slice(0, 3) : [] // Take top 3 projects
+          } as any);
         }
       } catch (err) {
-        console.log("Using robust fallback data");
+        console.error(err);
       } finally {
         setLoading(false);
       }
@@ -92,8 +110,9 @@ export default function FinancePackPage() {
 
   if (loading) return <div className="flex-1 flex items-center justify-center h-[60vh]"><Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" /></div>;
 
-  const reqCapitalLakhs = (data.assessment.required_capital_inr / 100000).toFixed(1);
-  const avoidedLossesLakhs = ((data.assessment.baseline_exposure_inr - data.assessment.mitigated_exposure_inr) / 100000).toFixed(1);
+  const reqCapitalMillions = (data.assessment.required_capital_inr / 1000000).toFixed(2);
+  const avoidedLossesMillions = ((data.assessment.baseline_exposure_inr - data.assessment.mitigated_exposure_inr) / 1000000).toFixed(2);
+  const projects = (data as any).projects || [];
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-4xl mx-auto pb-12">
@@ -144,7 +163,7 @@ export default function FinancePackPage() {
                 <CardTitle className="text-sm text-zinc-400 uppercase tracking-widest">Resilience Investment</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-black text-white">₹{reqCapitalLakhs}L</div>
+                <div className="text-3xl font-black text-white">${reqCapitalMillions}M</div>
                 <p className="text-xs text-zinc-500 mt-1">Capital required for mitigation</p>
               </CardContent>
             </Card>
@@ -154,7 +173,7 @@ export default function FinancePackPage() {
                 <CardTitle className="text-sm text-zinc-400 uppercase tracking-widest">Potential Losses Reduced</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-black text-green-400">₹{avoidedLossesLakhs}L <span className="text-lg font-medium text-zinc-500">/ event</span></div>
+                <div className="text-3xl font-black text-green-400">${avoidedLossesMillions}M <span className="text-lg font-medium text-zinc-500">/ event</span></div>
                 <p className="text-xs text-zinc-500 mt-1">Measurable business continuity</p>
               </CardContent>
             </Card>
@@ -163,21 +182,21 @@ export default function FinancePackPage() {
           <div className="space-y-4">
             <h3 className="text-lg font-bold text-white border-b border-white/10 pb-2">Proposed Interventions</h3>
             
-            <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-              <FileText className="w-5 h-5 text-fuchsia-400 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-white text-sm">Thermal Optimization & HVAC Upgrade</h4>
-                <p className="text-zinc-400 text-sm mt-1">Mitigates Extreme Heat risk (45°C+ scenario). Expected to improve energy efficiency by 18% during peak load.</p>
+            {projects.map((proj: any, idx: number) => (
+              <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                <FileText className="w-5 h-5 text-fuchsia-400 shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-bold text-white text-sm">{proj.title}</h4>
+                  <p className="text-zinc-400 text-sm mt-1">
+                    Status: {proj.status}. Expected to reduce exposure by {proj.exposure_reduction_pct}% and save ${(proj.annual_savings_estimate / 1000).toFixed(0)}k annually.
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <div className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-              <FileText className="w-5 h-5 text-fuchsia-400 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-white text-sm">Solar PV Backup & Storage</h4>
-                <p className="text-zinc-400 text-sm mt-1">Mitigates Power Dependence risk. Provides up to 6 hours of continuous operational autonomy during grid failure.</p>
-              </div>
-            </div>
+            ))}
+            
+            {projects.length === 0 && (
+               <div className="text-zinc-500 text-sm italic py-4 text-center">No interventions found for this portfolio.</div>
+            )}
           </div>
           
           <div className="pt-4 border-t border-white/10 text-center">

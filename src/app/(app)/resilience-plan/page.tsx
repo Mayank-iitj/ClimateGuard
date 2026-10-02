@@ -42,10 +42,14 @@ export default function ResiliencePlanPage() {
           const baseline = totalRevenue * 0.15 * (avgExposure / 100);
           const mitigated = Math.max(0, baseline - totalSavings);
 
+          // Get unique project titles to list as mitigations
+          const uniqueProjects = Array.from(new Set(projects?.map(p => p.title) || []));
+
           setData({
             baseline_exposure_inr: baseline || 210000,
-            mitigated_exposure_inr: mitigated || 70000
-          });
+            mitigated_exposure_inr: mitigated || 70000,
+            projects: uniqueProjects
+          } as any);
         }
       } catch (err) {
         console.error(err);
@@ -129,15 +133,15 @@ export default function ResiliencePlanPage() {
               </div>
               
               <ul className="space-y-4 text-zinc-300 font-medium">
-                <li className="flex justify-between items-center pb-2 border-b border-white/5">
-                  Thermal optimization
-                </li>
-                <li className="flex justify-between items-center pb-2 border-b border-white/5">
-                  Power resilience (Backup systems)
-                </li>
-                <li className="flex justify-between items-center pb-2 border-b border-white/5">
-                  Operational scheduling adjustments
-                </li>
+                {(data as any).projects && (data as any).projects.length > 0 ? (
+                  (data as any).projects.slice(0, 4).map((projTitle: string, i: number) => (
+                    <li key={i} className="flex justify-between items-center pb-2 border-b border-white/5">
+                      {projTitle}
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-zinc-500 italic">No mitigations applied yet.</li>
+                )}
               </ul>
 
               <div className="pt-6 mt-6 border-t border-green-500/30">
