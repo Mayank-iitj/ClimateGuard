@@ -3,6 +3,12 @@
 -- Enable UUID extension
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
+-- 0. Drop existing tables if they exist to allow clean re-runs
+DROP TABLE IF EXISTS public.impact_entries CASCADE;
+DROP TABLE IF EXISTS public.projects CASCADE;
+DROP TABLE IF EXISTS public.assessments CASCADE;
+DROP TABLE IF EXISTS public.businesses CASCADE;
+
 -- 1. Businesses Table
 CREATE TABLE public.businesses (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
