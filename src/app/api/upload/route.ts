@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { auth } from '@/auth';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -8,12 +9,16 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 export async function POST(req: Request) {
   try {
+    const session = await auth();
+    if (!session?.user) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    
     const body = await req.json();
     const records = body.data;
 
-    // Use a fixed demo user ID for now to tie everything together, 
-    // or extract from NextAuth session if you want true multi-tenant.
-    const userId = "demo-user-123"; 
+    // Use actual authenticated user ID
+    const userId = session.user.id || session.user.email || "demo-user-123";
 
     // Clear existing data for this user to make it fresh
     await supabase.from('businesses').delete().eq('user_id', userId);

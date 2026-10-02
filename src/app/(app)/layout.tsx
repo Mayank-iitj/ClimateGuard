@@ -51,14 +51,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </Button>
         </header>
 
-        {/* Top Header (Desktop) */}
-        <header className="h-16 border-b border-white/10 bg-[#0c0c10]/80 backdrop-blur-lg hidden md:flex items-center justify-end px-8 z-10 sticky top-0">
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-8 rounded-full bg-fuchsia-900/50 border border-fuchsia-500/30 flex items-center justify-center text-sm font-bold text-fuchsia-400">
-              U
-            </div>
-          </div>
-        </header>
+        {/* Top Header removed per request */}
 
         {/* Page Content */}
         <div className="flex-1 overflow-y-auto p-4 md:p-8 relative">
