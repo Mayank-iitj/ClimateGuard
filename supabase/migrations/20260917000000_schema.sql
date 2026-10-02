@@ -62,21 +62,17 @@ ALTER TABLE public.projects ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.impact_entries ENABLE ROW LEVEL SECURITY;
 
 -- Policies for businesses
-CREATE POLICY "Users can view own business" ON public.businesses
-    FOR SELECT USING (auth.uid() = user_id);
-CREATE POLICY "Users can create own business" ON public.businesses
-    FOR INSERT WITH CHECK (auth.uid() = user_id);
-CREATE POLICY "Users can update own business" ON public.businesses
-    FOR UPDATE USING (auth.uid() = user_id);
+CREATE POLICY "Allow all businesses" ON public.businesses
+    FOR ALL USING (true);
 
 -- Policies for assessments
-CREATE POLICY "Users can manage own assessments" ON public.assessments
-    FOR ALL USING (business_id IN (SELECT id FROM public.businesses WHERE user_id = auth.uid()));
+CREATE POLICY "Allow all assessments" ON public.assessments
+    FOR ALL USING (true);
 
 -- Policies for projects
-CREATE POLICY "Users can manage own projects" ON public.projects
-    FOR ALL USING (business_id IN (SELECT id FROM public.businesses WHERE user_id = auth.uid()));
+CREATE POLICY "Allow all projects" ON public.projects
+    FOR ALL USING (true);
 
 -- Policies for impact entries
-CREATE POLICY "Users can manage own impact entries" ON public.impact_entries
-    FOR ALL USING (business_id IN (SELECT id FROM public.businesses WHERE user_id = auth.uid()));
+CREATE POLICY "Allow all impact entries" ON public.impact_entries
+    FOR ALL USING (true);
