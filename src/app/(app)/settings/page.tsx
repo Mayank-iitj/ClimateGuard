@@ -81,7 +81,7 @@ export default function SettingsPage() {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-5xl mx-auto pb-12">
       <div>
         <h1 className="text-3xl font-bold tracking-tight mb-2">Settings</h1>
-        <p className="text-zinc-400">Manage your account preferences, security, and billing.</p>
+        <p className="text-[#7c1027]/70">Manage your account preferences, security, and billing.</p>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8">
@@ -97,90 +97,90 @@ export default function SettingsPage() {
         <div className="flex-1">
           {activeTab === "profile" && (
             <div className="space-y-6">
-              <Card className="bg-[#0c0c10]/80 border-white/10 backdrop-blur-md">
+              <Card className="bg-[#efe5d1]/80 border-[#7c1027]/20 backdrop-blur-md">
                 <CardHeader>
                   <CardTitle>Company Details</CardTitle>
                   <CardDescription>Update your MSME profile information.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {loading ? (
-                    <div className="flex justify-center p-8"><Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" /></div>
+                    <div className="flex justify-center p-8"><Loader2 className="w-8 h-8 text-rose-600 animate-spin" /></div>
                   ) : (
                     <>
                       <div className="space-y-2">
-                        <label className="text-sm font-medium text-zinc-300">Organization Name</label>
+                        <label className="text-sm font-medium text-[#7c1027]/80">Organization Name</label>
                         <input 
                           type="text" 
                           value={profileData.company_name}
                           onChange={(e) => setProfileData({...profileData, company_name: e.target.value})}
-                          className="w-full bg-white/5 border border-white/10 rounded-xl px-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors" 
+                          className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl px-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors" 
                         />
                       </div>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-zinc-300">Industry</label>
+                          <label className="text-sm font-medium text-[#7c1027]/80">Industry</label>
                           <input 
                             type="text" 
                             value={profileData.industry}
                             onChange={(e) => setProfileData({...profileData, industry: e.target.value})}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors" 
+                            className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl px-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors" 
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="text-sm font-medium text-zinc-300">Location</label>
+                          <label className="text-sm font-medium text-[#7c1027]/80">Location</label>
                           <input 
                             type="text" 
                             value={profileData.location}
                             onChange={(e) => setProfileData({...profileData, location: e.target.value})}
-                            className="w-full bg-white/5 border border-white/10 rounded-xl px-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors" 
+                            className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl px-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors" 
                           />
                         </div>
                       </div>
                     </>
                   )}
                 </CardContent>
-                <CardFooter className="border-t border-white/5 pt-6 justify-end flex items-center gap-4">
+                <CardFooter className="border-t border-[#7c1027]/10 pt-6 justify-end flex items-center gap-4">
                   {saveStatus && <span className="text-sm text-green-400 flex items-center gap-1"><CheckCircle2 className="w-4 h-4"/> {saveStatus}</span>}
                   <Button 
                     onClick={handleSaveCompany} 
                     disabled={isSaving || loading}
-                    className="bg-fuchsia-500 hover:bg-fuchsia-600 text-white"
+                    className="bg-rose-600 hover:bg-rose-800 text-[#7c1027]"
                   >
                     {isSaving ? "Saving..." : "Save Changes"}
                   </Button>
                 </CardFooter>
               </Card>
 
-              <Card className="bg-[#0c0c10]/80 border-white/10 backdrop-blur-md">
+              <Card className="bg-[#efe5d1]/80 border-[#7c1027]/20 backdrop-blur-md">
                 <CardHeader>
                   <CardTitle>Personal Information</CardTitle>
                   <CardDescription>Update your personal details and public profile.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center gap-6 mb-6">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-fuchsia-600 to-pink-500 flex items-center justify-center text-2xl font-bold text-white shadow-[0_0_15px_rgba(236,72,153,0.3)]">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-rose-800 to-rose-400 flex items-center justify-center text-2xl font-bold text-[#7c1027] shadow-[0_0_15px_rgba(236,72,153,0.3)]">
                       {userData.firstName.charAt(0)}
                     </div>
-                    <Button variant="outline" className="border-white/10 bg-white/5 hover:bg-white/10 text-white">Change Avatar</Button>
+                    <Button variant="outline" className="border-[#7c1027]/20 bg-[#7c1027]/5 hover:bg-[#7c1027]/10 text-[#7c1027]">Change Avatar</Button>
                   </div>
                   
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-zinc-300">First Name</label>
-                      <input type="text" value={userData.firstName} readOnly className="w-full bg-white/5 border border-white/10 rounded-xl px-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors opacity-70" />
+                      <label className="text-sm font-medium text-[#7c1027]/80">First Name</label>
+                      <input type="text" value={userData.firstName} readOnly className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl px-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors opacity-70" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-zinc-300">Last Name</label>
-                      <input type="text" value={userData.lastName} readOnly className="w-full bg-white/5 border border-white/10 rounded-xl px-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors opacity-70" />
+                      <label className="text-sm font-medium text-[#7c1027]/80">Last Name</label>
+                      <input type="text" value={userData.lastName} readOnly className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl px-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors opacity-70" />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-zinc-300">Email Address</label>
-                    <input type="email" value={userData.email} readOnly className="w-full bg-white/5 border border-white/10 rounded-xl px-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors opacity-70" />
+                    <label className="text-sm font-medium text-[#7c1027]/80">Email Address</label>
+                    <input type="email" value={userData.email} readOnly className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl px-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors opacity-70" />
                   </div>
                 </CardContent>
-                <CardFooter className="border-t border-white/5 pt-6 justify-end">
-                  <Button variant="outline" className="border-white/10 text-white">Update Personal Info</Button>
+                <CardFooter className="border-t border-[#7c1027]/10 pt-6 justify-end">
+                  <Button variant="outline" className="border-[#7c1027]/20 text-[#7c1027]">Update Personal Info</Button>
                 </CardFooter>
               </Card>
             </div>
@@ -188,43 +188,43 @@ export default function SettingsPage() {
 
           {activeTab === "security" && (
             <div className="space-y-6">
-              <Card className="bg-[#0c0c10]/80 border-white/10 backdrop-blur-md">
+              <Card className="bg-[#efe5d1]/80 border-[#7c1027]/20 backdrop-blur-md">
                 <CardHeader>
                   <CardTitle>Password</CardTitle>
                   <CardDescription>Ensure your account is using a long, random password to stay secure.</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-zinc-300">Current Password</label>
-                    <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors" />
+                    <label className="text-sm font-medium text-[#7c1027]/80">Current Password</label>
+                    <input type="password" placeholder="••••••••" className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl px-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors" />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-zinc-300">New Password</label>
-                    <input type="password" placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors" />
+                    <label className="text-sm font-medium text-[#7c1027]/80">New Password</label>
+                    <input type="password" placeholder="••••••••" className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl px-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors" />
                   </div>
                 </CardContent>
-                <CardFooter className="border-t border-white/5 pt-6 justify-end">
-                  <Button className="bg-fuchsia-500 hover:bg-fuchsia-600 text-white">Update Password</Button>
+                <CardFooter className="border-t border-[#7c1027]/10 pt-6 justify-end">
+                  <Button className="bg-rose-600 hover:bg-rose-800 text-[#7c1027]">Update Password</Button>
                 </CardFooter>
               </Card>
 
-              <Card className="bg-[#0c0c10]/80 border-white/10 backdrop-blur-md">
+              <Card className="bg-[#efe5d1]/80 border-[#7c1027]/20 backdrop-blur-md">
                 <CardHeader>
                   <CardTitle>Two-Factor Authentication (2FA)</CardTitle>
                   <CardDescription>Add an extra layer of security to your account.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-between p-4 rounded-xl border border-fuchsia-500/30 bg-fuchsia-500/5">
+                  <div className="flex items-center justify-between p-4 rounded-xl border border-rose-600/30 bg-rose-600/5">
                     <div className="flex items-center gap-4">
-                      <div className="p-2 bg-fuchsia-500/20 rounded-lg text-fuchsia-400">
+                      <div className="p-2 bg-rose-600/20 rounded-lg text-rose-500">
                         <Smartphone size={24} />
                       </div>
                       <div>
-                        <div className="font-bold text-white">Authenticator App</div>
-                        <div className="text-sm text-zinc-400">Not configured</div>
+                        <div className="font-bold text-[#7c1027]">Authenticator App</div>
+                        <div className="text-sm text-[#7c1027]/70">Not configured</div>
                       </div>
                     </div>
-                    <Button variant="outline" className="border-white/10 bg-white/5 text-white">Enable</Button>
+                    <Button variant="outline" className="border-[#7c1027]/20 bg-[#7c1027]/5 text-[#7c1027]">Enable</Button>
                   </div>
                 </CardContent>
               </Card>
@@ -233,7 +233,7 @@ export default function SettingsPage() {
 
           {activeTab === "notifications" && (
             <div className="space-y-6">
-              <Card className="bg-[#0c0c10]/80 border-white/10 backdrop-blur-md">
+              <Card className="bg-[#efe5d1]/80 border-[#7c1027]/20 backdrop-blur-md">
                 <CardHeader>
                   <CardTitle>Alert Preferences</CardTitle>
                   <CardDescription>Choose what we notify you about.</CardDescription>
@@ -244,8 +244,8 @@ export default function SettingsPage() {
                     <div className="flex gap-4">
                       <AlertTriangle className="text-amber-500 mt-1" />
                       <div>
-                        <div className="font-bold text-white">Critical Risk Alerts</div>
-                        <div className="text-sm text-zinc-400">Immediate notifications for severe climate threats.</div>
+                        <div className="font-bold text-[#7c1027]">Critical Risk Alerts</div>
+                        <div className="text-sm text-[#7c1027]/70">Immediate notifications for severe climate threats.</div>
                       </div>
                     </div>
                     <Toggle active={true} />
@@ -253,10 +253,10 @@ export default function SettingsPage() {
 
                   <div className="flex items-start justify-between">
                     <div className="flex gap-4">
-                      <Mail className="text-zinc-400 mt-1" />
+                      <Mail className="text-[#7c1027]/70 mt-1" />
                       <div>
-                        <div className="font-bold text-white">Weekly Reports</div>
-                        <div className="text-sm text-zinc-400">A weekly digest of your portfolio's risk exposure.</div>
+                        <div className="font-bold text-[#7c1027]">Weekly Reports</div>
+                        <div className="text-sm text-[#7c1027]/70">A weekly digest of your portfolio's risk exposure.</div>
                       </div>
                     </div>
                     <Toggle active={true} />
@@ -264,10 +264,10 @@ export default function SettingsPage() {
 
                   <div className="flex items-start justify-between">
                     <div className="flex gap-4">
-                      <Key className="text-zinc-400 mt-1" />
+                      <Key className="text-[#7c1027]/70 mt-1" />
                       <div>
-                        <div className="font-bold text-white">Security Alerts</div>
-                        <div className="text-sm text-zinc-400">Get notified when someone logs into your account.</div>
+                        <div className="font-bold text-[#7c1027]">Security Alerts</div>
+                        <div className="text-sm text-[#7c1027]/70">Get notified when someone logs into your account.</div>
                       </div>
                     </div>
                     <Toggle active={true} />
@@ -290,41 +290,41 @@ export default function SettingsPage() {
                 <div className="p-8 relative z-10">
                   <div className="flex justify-between items-start mb-6">
                     <div>
-                      <h3 className="text-2xl font-bold text-white mb-1">Enterprise Plan</h3>
-                      <p className="text-fuchsia-400 font-medium">Active Subscription</p>
+                      <h3 className="text-2xl font-bold text-[#7c1027] mb-1">Enterprise Plan</h3>
+                      <p className="text-rose-500 font-medium">Active Subscription</p>
                     </div>
-                    <div className="text-3xl font-black text-white">$499<span className="text-sm text-zinc-500 font-normal">/mo</span></div>
+                    <div className="text-3xl font-black text-[#7c1027]">$499<span className="text-sm text-[#7c1027]/50 font-normal">/mo</span></div>
                   </div>
                   
-                  <ul className="space-y-3 text-zinc-300 text-sm mb-8">
-                    <li className="flex items-center gap-2"><CheckCircle2 className="text-fuchsia-500 w-4 h-4" /> Unlimited asset tracking</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="text-fuchsia-500 w-4 h-4" /> Custom AI stress-testing scenarios</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="text-fuchsia-500 w-4 h-4" /> Dedicated account manager</li>
+                  <ul className="space-y-3 text-[#7c1027]/80 text-sm mb-8">
+                    <li className="flex items-center gap-2"><CheckCircle2 className="text-rose-600 w-4 h-4" /> Unlimited asset tracking</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 className="text-rose-600 w-4 h-4" /> Custom AI stress-testing scenarios</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 className="text-rose-600 w-4 h-4" /> Dedicated account manager</li>
                   </ul>
 
                   <div className="flex gap-4">
                     <Button className="bg-white text-black hover:bg-zinc-200">Manage Subscription</Button>
-                    <Button variant="outline" className="border-white/10 bg-transparent text-white hover:bg-white/5">View Invoices</Button>
+                    <Button variant="outline" className="border-[#7c1027]/20 bg-transparent text-[#7c1027] hover:bg-[#7c1027]/5">View Invoices</Button>
                   </div>
                 </div>
               </BorderGlow>
 
-              <Card className="bg-[#0c0c10]/80 border-white/10 backdrop-blur-md">
+              <Card className="bg-[#efe5d1]/80 border-[#7c1027]/20 backdrop-blur-md">
                 <CardHeader>
                   <CardTitle>Payment Method</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-between p-4 rounded-xl border border-white/10 bg-white/5">
+                  <div className="flex items-center justify-between p-4 rounded-xl border border-[#7c1027]/20 bg-[#7c1027]/5">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-8 bg-zinc-800 rounded flex items-center justify-center border border-zinc-700">
-                        <span className="font-bold italic text-white text-xs">VISA</span>
+                        <span className="font-bold italic text-[#7c1027] text-xs">VISA</span>
                       </div>
                       <div>
-                        <div className="font-bold text-white">Visa ending in 4242</div>
-                        <div className="text-sm text-zinc-400">Expires 12/28</div>
+                        <div className="font-bold text-[#7c1027]">Visa ending in 4242</div>
+                        <div className="text-sm text-[#7c1027]/70">Expires 12/28</div>
                       </div>
                     </div>
-                    <Button variant="ghost" className="text-zinc-400 hover:text-white">Edit</Button>
+                    <Button variant="ghost" className="text-[#7c1027]/70 hover:text-[#7c1027]">Edit</Button>
                   </div>
                 </CardContent>
               </Card>
@@ -342,8 +342,8 @@ function TabButton({ active, onClick, icon, label }: { active: boolean, onClick:
       onClick={onClick}
       className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-left ${
         active 
-          ? 'bg-fuchsia-500/10 text-fuchsia-400 border border-fuchsia-500/20 shadow-[inset_2px_0_0_#ec4899]' 
-          : 'text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent'
+          ? 'bg-rose-600/10 text-rose-500 border border-rose-600/20 shadow-[inset_2px_0_0_#ec4899]' 
+          : 'text-[#7c1027]/70 hover:text-[#7c1027] hover:bg-[#7c1027]/5 border border-transparent'
       }`}
     >
       {icon}
@@ -357,7 +357,7 @@ function Toggle({ active }: { active: boolean }) {
   return (
     <button 
       onClick={() => setIsOn(!isOn)}
-      className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-1 ${isOn ? 'bg-fuchsia-500' : 'bg-zinc-700'}`}
+      className={`w-11 h-6 rounded-full transition-colors relative flex items-center px-1 ${isOn ? 'bg-rose-600' : 'bg-zinc-700'}`}
     >
       <div className={`w-4 h-4 bg-white rounded-full transition-transform ${isOn ? 'translate-x-5' : 'translate-x-0'}`} />
     </button>

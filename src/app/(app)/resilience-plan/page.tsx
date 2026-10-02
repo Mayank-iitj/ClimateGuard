@@ -60,7 +60,7 @@ export default function ResiliencePlanPage() {
     fetchData();
   }, []);
 
-  if (loading) return <div className="flex-1 flex items-center justify-center h-[60vh]"><Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" /></div>;
+  if (loading) return <div className="flex-1 flex items-center justify-center h-[60vh]"><Loader2 className="w-8 h-8 text-rose-600 animate-spin" /></div>;
 
   const baselineMillions = (data.baseline_exposure_inr / 1000000).toFixed(2);
   const mitigatedMillions = (data.mitigated_exposure_inr / 1000000).toFixed(2);
@@ -68,43 +68,43 @@ export default function ResiliencePlanPage() {
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-5xl mx-auto pb-12">
       <div>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2 text-white">What happens if the climate shock actually occurs?</h1>
-        <p className="text-zinc-400 max-w-3xl">Illustrative scenario simulation based on your uploaded business conditions. See how taking action changes your financial outcome.</p>
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2 text-[#7c1027]">What happens if the climate shock actually occurs?</h1>
+        <p className="text-[#7c1027]/70 max-w-3xl">Illustrative scenario simulation based on your uploaded business conditions. See how taking action changes your financial outcome.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-8 relative">
         {/* Connection Arrow (Desktop) */}
         <div className="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none z-10">
-          <ArrowRight className="w-16 h-16 text-zinc-500" />
+          <ArrowRight className="w-16 h-16 text-[#7c1027]/50" />
         </div>
 
         {/* BASELINE CARD */}
         <div className="space-y-4">
-          <div className="bg-red-500 text-white font-bold text-center py-2 px-4 rounded-t-xl text-sm tracking-widest">
+          <div className="bg-red-500 text-[#7c1027] font-bold text-center py-2 px-4 rounded-t-xl text-sm tracking-widest">
             BASELINE
           </div>
-          <Card className="bg-[#0c0c10]/80 border-white/10 rounded-b-xl rounded-t-none border-t-0 shadow-lg h-full backdrop-blur-md">
+          <Card className="bg-[#efe5d1]/80 border-[#7c1027]/20 rounded-b-xl rounded-t-none border-t-0 shadow-lg h-full backdrop-blur-md">
             <CardContent className="p-8 space-y-8">
               
               <div className="flex items-center gap-3">
                 <AlertTriangle className="w-6 h-6 text-red-500" />
-                <h3 className="text-xl font-bold text-white">Extreme Weather Scenario</h3>
+                <h3 className="text-xl font-bold text-[#7c1027]">Extreme Weather Scenario</h3>
               </div>
               
-              <ul className="space-y-4 text-zinc-300 font-medium">
-                <li className="flex justify-between items-center pb-2 border-b border-white/5">
+              <ul className="space-y-4 text-[#7c1027]/80 font-medium">
+                <li className="flex justify-between items-center pb-2 border-b border-[#7c1027]/10">
                   Production disruption <TrendingDown className="text-red-500 w-5 h-5" />
                 </li>
-                <li className="flex justify-between items-center pb-2 border-b border-white/5">
+                <li className="flex justify-between items-center pb-2 border-b border-[#7c1027]/10">
                   Energy demand <TrendingUp className="text-red-500 w-5 h-5" />
                 </li>
-                <li className="flex justify-between items-center pb-2 border-b border-white/5">
+                <li className="flex justify-between items-center pb-2 border-b border-[#7c1027]/10">
                   Equipment efficiency <TrendingDown className="text-red-500 w-5 h-5" />
                 </li>
               </ul>
 
               <div className="pt-6 mt-6 border-t border-red-500/30">
-                <p className="text-sm text-zinc-400 mb-2 font-medium">Estimated financial exposure:</p>
+                <p className="text-sm text-[#7c1027]/70 mb-2 font-medium">Estimated financial exposure:</p>
                 <div className="text-6xl font-black text-red-500">${baselineMillions}M<span className="text-lg text-red-500/50 align-top">*</span></div>
               </div>
               
@@ -114,7 +114,7 @@ export default function ResiliencePlanPage() {
 
         {/* AFTER RESILIENCE ACTIONS CARD */}
         <div className="space-y-4">
-          <div className="bg-green-600 text-white font-bold text-center py-2 px-4 rounded-t-xl text-sm tracking-widest">
+          <div className="bg-green-600 text-[#7c1027] font-bold text-center py-2 px-4 rounded-t-xl text-sm tracking-widest">
             AFTER RESILIENCE ACTIONS
           </div>
           
@@ -129,23 +129,23 @@ export default function ResiliencePlanPage() {
               
               <div className="flex items-center gap-3">
                 <ShieldCheck className="w-6 h-6 text-green-500" />
-                <h3 className="text-xl font-bold text-white">Mitigations Applied</h3>
+                <h3 className="text-xl font-bold text-[#7c1027]">Mitigations Applied</h3>
               </div>
               
-              <ul className="space-y-4 text-zinc-300 font-medium">
+              <ul className="space-y-4 text-[#7c1027]/80 font-medium">
                 {(data as any).projects && (data as any).projects.length > 0 ? (
                   (data as any).projects.slice(0, 4).map((projTitle: string, i: number) => (
-                    <li key={i} className="flex justify-between items-center pb-2 border-b border-white/5">
+                    <li key={i} className="flex justify-between items-center pb-2 border-b border-[#7c1027]/10">
                       {projTitle}
                     </li>
                   ))
                 ) : (
-                  <li className="text-zinc-500 italic">No mitigations applied yet.</li>
+                  <li className="text-[#7c1027]/50 italic">No mitigations applied yet.</li>
                 )}
               </ul>
 
               <div className="pt-6 mt-6 border-t border-green-500/30">
-                <p className="text-sm text-zinc-400 mb-2 font-medium">Estimated exposure:</p>
+                <p className="text-sm text-[#7c1027]/70 mb-2 font-medium">Estimated exposure:</p>
                 <div className="text-6xl font-black text-green-500">${mitigatedMillions}M<span className="text-lg text-green-500/50 align-top">*</span></div>
               </div>
               
@@ -155,8 +155,8 @@ export default function ResiliencePlanPage() {
 
       </div>
 
-      <div className="flex flex-col items-center pt-16 pb-8 border-t border-white/5">
-        <h2 className="text-2xl font-bold text-white mb-6">Resilience changes the financial outcome.</h2>
+      <div className="flex flex-col items-center pt-16 pb-8 border-t border-[#7c1027]/10">
+        <h2 className="text-2xl font-bold text-[#7c1027] mb-6">Resilience changes the financial outcome.</h2>
         <div className="flex flex-wrap justify-center gap-4">
           <StarBorder as={Link as any} href="/finance-pack" color="#f472b6" speed="4s" backgroundColor="#ec4899" textColor="#ffffff" borderColor="#db2777" className="hover:scale-105 transition-transform">
             <span className="font-bold px-4 text-sm tracking-wide">GENERATE FINANCE PACK</span>

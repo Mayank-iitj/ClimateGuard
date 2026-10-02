@@ -3,16 +3,16 @@ import { ArrowLeft, Globe } from "lucide-react";
 
 export default function TermsOfService() {
   return (
-    <div className="min-h-screen bg-[#070709] text-white font-sans selection:bg-fuchsia-500/30">
-      <header className="sticky top-0 z-50 px-6 py-4 border-b border-white/5 bg-[#0c0c10]/80 backdrop-blur-xl">
+    <div className="min-h-screen bg-[#fdfbf7] text-[#7c1027] font-sans selection:bg-rose-600/30">
+      <header className="sticky top-0 z-50 px-6 py-4 border-b border-[#7c1027]/10 bg-[#efe5d1]/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto flex items-center">
           <Link href="/" className="flex items-center gap-2 group mr-auto">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-fuchsia-600 to-pink-500 flex items-center justify-center group-hover:scale-105 transition-transform">
-              <Globe className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-rose-800 to-rose-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+              <Globe className="w-4 h-4 text-[#7c1027]" />
             </div>
             <span className="font-bold text-xl tracking-tight">ClimateGuard</span>
           </Link>
-          <Link href="/" className="text-sm font-medium text-zinc-400 hover:text-white flex items-center gap-2 transition-colors">
+          <Link href="/" className="text-sm font-medium text-[#7c1027]/70 hover:text-[#7c1027] flex items-center gap-2 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Home
           </Link>
         </div>
@@ -20,11 +20,11 @@ export default function TermsOfService() {
 
       <main className="max-w-3xl mx-auto px-6 py-24">
         <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Terms of Service</h1>
-        <div className="text-sm text-zinc-500 mb-12">Last Updated: October 15, 2025</div>
+        <div className="text-sm text-[#7c1027]/50 mb-12">Last Updated: October 15, 2025</div>
 
-        <div className="prose prose-invert prose-zinc max-w-none space-y-8 text-zinc-300">
+        <div className="prose prose-invert prose-zinc max-w-none space-y-8 text-[#7c1027]/80">
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">1. Agreement to Terms</h2>
+            <h2 className="text-2xl font-semibold text-[#7c1027] mb-4">1. Agreement to Terms</h2>
             <p>
               By accessing or using the ClimateGuard platform, you agree to be bound by these Terms of Service and all 
               applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from 
@@ -33,13 +33,13 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">2. Use License</h2>
+            <h2 className="text-2xl font-semibold text-[#7c1027] mb-4">2. Use License</h2>
             <p>
               Permission is granted to temporarily download one copy of the materials (information or software) on 
               ClimateGuard's website for personal, non-commercial transitory viewing only. This is the grant of a 
               license, not a transfer of title, and under this license you may not:
             </p>
-            <ul className="list-disc pl-6 space-y-2 mt-4 text-zinc-400">
+            <ul className="list-disc pl-6 space-y-2 mt-4 text-[#7c1027]/70">
               <li>Modify or copy the materials;</li>
               <li>Use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
               <li>Attempt to decompile or reverse engineer any software contained on ClimateGuard's website;</li>
@@ -49,7 +49,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">3. Disclaimer</h2>
+            <h2 className="text-2xl font-semibold text-[#7c1027] mb-4">3. Disclaimer</h2>
             <p>
               The materials on ClimateGuard's website and platform are provided on an 'as is' basis. ClimateGuard makes 
               no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, 
@@ -64,7 +64,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">4. Limitations</h2>
+            <h2 className="text-2xl font-semibold text-[#7c1027] mb-4">4. Limitations</h2>
             <p>
               In no event shall ClimateGuard or its suppliers be liable for any damages (including, without limitation, 
               damages for loss of data or profit, or due to business interruption) arising out of the use or inability to 
@@ -74,7 +74,7 @@ export default function TermsOfService() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-semibold text-white mb-4">5. Revisions and Errata</h2>
+            <h2 className="text-2xl font-semibold text-[#7c1027] mb-4">5. Revisions and Errata</h2>
             <p>
               The materials appearing on ClimateGuard's website could include technical, typographical, or photographic errors. 
               ClimateGuard does not warrant that any of the materials on its website are accurate, complete, or current. 

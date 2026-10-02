@@ -90,45 +90,45 @@ export default function SetupPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#050507] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" />
+      <div className="min-h-screen bg-[#fdfbf7] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-rose-600 animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#050507] text-white flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-[#fdfbf7] text-[#7c1027] flex items-center justify-center p-4 relative overflow-hidden">
       
       {/* Background Ambience */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden flex justify-center items-center">
-        <div className="absolute w-[600px] h-[600px] bg-fuchsia-600/10 rounded-full blur-[120px] animate-pulse" />
+        <div className="absolute w-[600px] h-[600px] bg-rose-800/10 rounded-full blur-[120px] animate-pulse" />
         <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px]" />
       </div>
 
       <div className="max-w-xl w-full relative z-10">
         
         <div className="text-center mb-10">
-          <div className="w-16 h-16 bg-gradient-to-tr from-fuchsia-600 to-pink-500 rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(236,72,153,0.3)]">
-            <Globe className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 bg-gradient-to-tr from-rose-800 to-rose-400 rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-[0_0_30px_rgba(236,72,153,0.3)]">
+            <Globe className="w-8 h-8 text-[#7c1027]" />
           </div>
           <h1 className="text-3xl font-bold tracking-tight mb-3">Welcome to ClimateGuard</h1>
-          <p className="text-zinc-400">Let's set up your personalized resilience platform.</p>
+          <p className="text-[#7c1027]/70">Let's set up your personalized resilience platform.</p>
         </div>
 
-        <div className="bg-[#0c0c10]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+        <div className="bg-[#efe5d1]/80 backdrop-blur-xl border border-[#7c1027]/20 rounded-2xl p-8 shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-6">
             
             {/* Company Name */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-zinc-300">Company Name</label>
+              <label className="text-sm font-medium text-[#7c1027]/80">Company Name</label>
               <div className="relative">
-                <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#7c1027]/50" />
                 <input 
                   type="text" 
                   required
                   value={formData.company_name}
                   onChange={(e) => setFormData({...formData, company_name: e.target.value})}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors placeholder:text-zinc-600"
+                  className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl pl-12 pr-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors placeholder:text-zinc-600"
                   placeholder="Acme Corp"
                 />
               </div>
@@ -137,35 +137,35 @@ export default function SetupPage() {
             {/* Industry & Location */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-zinc-300">Industry</label>
+                <label className="text-sm font-medium text-[#7c1027]/80">Industry</label>
                 <div className="relative">
-                  <Factory className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                  <Factory className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#7c1027]/50" />
                   <select 
                     value={formData.industry}
                     onChange={(e) => setFormData({...formData, industry: e.target.value})}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors appearance-none"
+                    className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl pl-12 pr-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors appearance-none"
                   >
-                    <option className="bg-[#0c0c10]" value="Manufacturing">Manufacturing</option>
-                    <option className="bg-[#0c0c10]" value="Food Processing">Food Processing</option>
-                    <option className="bg-[#0c0c10]" value="Agriculture">Agriculture</option>
-                    <option className="bg-[#0c0c10]" value="Logistics">Logistics</option>
-                    <option className="bg-[#0c0c10]" value="Technology">Technology</option>
-                    <option className="bg-[#0c0c10]" value="Retail">Retail</option>
-                    <option className="bg-[#0c0c10]" value="Healthcare">Healthcare</option>
+                    <option className="bg-[#efe5d1]" value="Manufacturing">Manufacturing</option>
+                    <option className="bg-[#efe5d1]" value="Food Processing">Food Processing</option>
+                    <option className="bg-[#efe5d1]" value="Agriculture">Agriculture</option>
+                    <option className="bg-[#efe5d1]" value="Logistics">Logistics</option>
+                    <option className="bg-[#efe5d1]" value="Technology">Technology</option>
+                    <option className="bg-[#efe5d1]" value="Retail">Retail</option>
+                    <option className="bg-[#efe5d1]" value="Healthcare">Healthcare</option>
                   </select>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-zinc-300">Location</label>
+                <label className="text-sm font-medium text-[#7c1027]/80">Location</label>
                 <div className="relative">
-                  <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                  <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#7c1027]/50" />
                   <input 
                     type="text" 
                     required
                     value={formData.location}
                     onChange={(e) => setFormData({...formData, location: e.target.value})}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors placeholder:text-zinc-600"
+                    className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl pl-12 pr-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors placeholder:text-zinc-600"
                     placeholder="City, Region"
                   />
                 </div>
@@ -174,19 +174,19 @@ export default function SetupPage() {
 
             {/* Revenue */}
             <div className="space-y-2">
-              <label className="text-sm font-medium text-zinc-300">Annual Revenue Bracket</label>
+              <label className="text-sm font-medium text-[#7c1027]/80">Annual Revenue Bracket</label>
               <div className="relative">
-                <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" />
+                <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#7c1027]/50" />
                 <select 
                   value={formData.revenue_bracket}
                   onChange={(e) => setFormData({...formData, revenue_bracket: e.target.value})}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 h-12 text-white focus:outline-none focus:border-fuchsia-500 transition-colors appearance-none"
+                  className="w-full bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-xl pl-12 pr-4 h-12 text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors appearance-none"
                 >
-                  <option className="bg-[#0c0c10]" value="< 1M">Under $1M</option>
-                  <option className="bg-[#0c0c10]" value="1M-5M">$1M - $5M</option>
-                  <option className="bg-[#0c0c10]" value="5M-20M">$5M - $20M</option>
-                  <option className="bg-[#0c0c10]" value="20M-100M">$20M - $100M</option>
-                  <option className="bg-[#0c0c10]" value="> 100M">Over $100M</option>
+                  <option className="bg-[#efe5d1]" value="< 1M">Under $1M</option>
+                  <option className="bg-[#efe5d1]" value="1M-5M">$1M - $5M</option>
+                  <option className="bg-[#efe5d1]" value="5M-20M">$5M - $20M</option>
+                  <option className="bg-[#efe5d1]" value="20M-100M">$20M - $100M</option>
+                  <option className="bg-[#efe5d1]" value="> 100M">Over $100M</option>
                 </select>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function SetupPage() {
             <Button 
               type="submit" 
               disabled={submitting || !formData.company_name || !formData.location}
-              className="w-full h-12 bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-xl font-bold mt-4"
+              className="w-full h-12 bg-rose-800 hover:bg-fuchsia-700 text-[#7c1027] rounded-xl font-bold mt-4"
             >
               {submitting ? (
                 <>Building Platform <Loader2 className="w-5 h-5 ml-2 animate-spin" /></>

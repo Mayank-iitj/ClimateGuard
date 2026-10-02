@@ -34,7 +34,7 @@ export default function ClimateMap({
   }, []);
 
   if (!mounted) {
-    return <div className="w-full h-full bg-[#050507] animate-pulse" />;
+    return <div className="w-full h-full bg-[#fdfbf7] animate-pulse" />;
   }
 
   // Create custom glowing DivIcons dynamically
@@ -53,7 +53,7 @@ export default function ClimateMap({
   };
 
   return (
-    <div className="w-full h-full rounded-2xl overflow-hidden relative z-0 border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+    <div className="w-full h-full rounded-2xl overflow-hidden relative z-0 border border-[#7c1027]/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
       <MapContainer 
         center={[22.5937, 78.9629]} // Center of India
         zoom={4.5} 
@@ -80,9 +80,9 @@ export default function ClimateMap({
           >
             {/* Adding interactive Tooltips for Hackathon wow-factor */}
             {spot.id === activeHotspot && (
-              <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#0c0c10]/95 backdrop-blur-xl border border-white/20 p-3 rounded-lg shadow-2xl whitespace-nowrap z-50 animate-in fade-in zoom-in-95 duration-200">
-                <div className="text-xs text-zinc-400 mb-1">Estimated Exposure</div>
-                <div className="text-lg font-bold text-white">${Math.floor(Math.random() * 50 + 10)}M - ${Math.floor(Math.random() * 100 + 60)}M</div>
+              <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-[#efe5d1]/95 backdrop-blur-xl border border-white/20 p-3 rounded-lg shadow-2xl whitespace-nowrap z-50 animate-in fade-in zoom-in-95 duration-200">
+                <div className="text-xs text-[#7c1027]/70 mb-1">Estimated Exposure</div>
+                <div className="text-lg font-bold text-[#7c1027]">${Math.floor(Math.random() * 50 + 10)}M - ${Math.floor(Math.random() * 100 + 60)}M</div>
                 <div className={`text-xs mt-1 ${spot.color}`}>{spot.risk}</div>
               </div>
             )}
