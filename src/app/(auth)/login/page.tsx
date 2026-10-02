@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen w-full bg-[#fdfbf7] flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen w-full bg-[#070709] flex items-center justify-center relative overflow-hidden">
       {/* Background Effect */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
         <Waves
@@ -25,12 +25,12 @@ export default function LoginPage() {
         />
       </div>
 
-      <Card className="w-full max-w-md bg-[#efe5d1]/80 backdrop-blur-xl border-[#7c1027]/20 text-[#7c1027] relative z-10 shadow-[0_20px_70px_-15px_rgba(236,72,153,0.3)] border">
+      <Card className="w-full max-w-md bg-[#111116]/80 backdrop-blur-xl border-white/10 text-white relative z-10 shadow-[0_20px_70px_-15px_rgba(236,72,153,0.3)] border">
         <CardHeader className="space-y-4 text-center">
 
           <div>
             <CardTitle className="text-3xl font-bold tracking-tight">Welcome Back</CardTitle>
-            <CardDescription className="text-[#7c1027]/70 mt-2">
+            <CardDescription className="text-zinc-400 mt-2">
               Sign in to manage your climate risk and resilience dashboard.
             </CardDescription>
           </div>

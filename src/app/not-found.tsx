@@ -6,10 +6,10 @@ import StrokeText from "@/components/ui/stroke-text";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#fdfbf7] text-[#7c1027] selection:bg-rose-600/30 font-sans items-center justify-center p-4 relative overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-[#070709] text-white selection:bg-fuchsia-500/30 font-sans items-center justify-center p-4 relative overflow-hidden">
       {/* Background Glows */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[20%] left-[20%] w-[40%] h-[40%] rounded-full bg-rose-800/10 blur-[150px]" />
+        <div className="absolute top-[20%] left-[20%] w-[40%] h-[40%] rounded-full bg-fuchsia-600/10 blur-[150px]" />
       </div>
 
       <div className="z-10 text-center flex flex-col items-center">
@@ -32,7 +32,7 @@ export default function NotFound() {
         </div>
         
         <h1 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Lost in the Data</h1>
-        <p className="text-[#7c1027]/70 mb-10 max-w-md mx-auto">
+        <p className="text-zinc-400 mb-10 max-w-md mx-auto">
           The page you are looking for has been moved, deleted, or possibly never existed in our resilient infrastructure.
         </p>
 

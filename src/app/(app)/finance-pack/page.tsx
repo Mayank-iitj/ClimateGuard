@@ -108,7 +108,7 @@ export default function FinancePackPage() {
     }
   };
 
-  if (loading) return <div className="flex-1 flex items-center justify-center h-[60vh]"><Loader2 className="w-8 h-8 text-rose-600 animate-spin" /></div>;
+  if (loading) return <div className="flex-1 flex items-center justify-center h-[60vh]"><Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" /></div>;
 
   const reqCapitalMillions = (data.assessment.required_capital_inr / 1000000).toFixed(2);
   const avoidedLossesMillions = ((data.assessment.baseline_exposure_inr - data.assessment.mitigated_exposure_inr) / 1000000).toFixed(2);
@@ -116,22 +116,22 @@ export default function FinancePackPage() {
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-4xl mx-auto pb-12">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#7c1027]/20 pb-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-white/10 pb-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#7c1027] mb-2">Finance Readiness Pack</h1>
-          <p className="text-[#7c1027]/70">Structured project information for Satin Finserv integration.</p>
+          <h1 className="text-3xl font-bold tracking-tight text-white mb-2">Finance Readiness Pack</h1>
+          <p className="text-zinc-400">Structured project information for Satin Finserv integration.</p>
         </div>
         <Button 
           onClick={handleDownload} 
           disabled={isGenerating}
-          className="bg-rose-800 hover:bg-fuchsia-700 text-[#7c1027] flex items-center gap-2"
+          className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white flex items-center gap-2"
         >
           <Download className="w-4 h-4" /> 
           {isGenerating ? "Generating..." : "Download PDF Pack"}
         </Button>
       </div>
 
-      <div ref={pdfRef} className="rounded-xl overflow-hidden bg-[#fdfbf7] p-2">
+      <div ref={pdfRef} className="rounded-xl overflow-hidden bg-[#050507] p-2">
 
       <BorderGlow
         className="w-full"
@@ -144,12 +144,12 @@ export default function FinancePackPage() {
           
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-rose-600/20 rounded-xl">
-                <Factory className="w-6 h-6 text-rose-500" />
+              <div className="p-3 bg-fuchsia-500/20 rounded-xl">
+                <Factory className="w-6 h-6 text-fuchsia-400" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-[#7c1027]">{data.profile.company_name}</h2>
-                <div className="text-[#7c1027]/70 text-sm font-medium">MSME Loan ID: SF-2026-IND</div>
+                <h2 className="text-xl font-bold text-white">{data.profile.company_name}</h2>
+                <div className="text-zinc-400 text-sm font-medium">MSME Loan ID: SF-2026-IND</div>
               </div>
             </div>
             <div className="flex items-center gap-1.5 px-3 py-1 bg-green-500/20 border border-green-500/30 rounded-full text-green-400 text-xs font-bold uppercase tracking-wider">
@@ -158,36 +158,36 @@ export default function FinancePackPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="bg-[#7c1027]/5 border-[#7c1027]/20">
+            <Card className="bg-white/5 border-white/10">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-[#7c1027]/70 uppercase tracking-widest">Resilience Investment</CardTitle>
+                <CardTitle className="text-sm text-zinc-400 uppercase tracking-widest">Resilience Investment</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-black text-[#7c1027]">${reqCapitalMillions}M</div>
-                <p className="text-xs text-[#7c1027]/50 mt-1">Capital required for mitigation</p>
+                <div className="text-3xl font-black text-white">${reqCapitalMillions}M</div>
+                <p className="text-xs text-zinc-500 mt-1">Capital required for mitigation</p>
               </CardContent>
             </Card>
             
-            <Card className="bg-[#7c1027]/5 border-[#7c1027]/20">
+            <Card className="bg-white/5 border-white/10">
               <CardHeader className="pb-2">
-                <CardTitle className="text-sm text-[#7c1027]/70 uppercase tracking-widest">Potential Losses Reduced</CardTitle>
+                <CardTitle className="text-sm text-zinc-400 uppercase tracking-widest">Potential Losses Reduced</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-3xl font-black text-green-400">${avoidedLossesMillions}M <span className="text-lg font-medium text-[#7c1027]/50">/ event</span></div>
-                <p className="text-xs text-[#7c1027]/50 mt-1">Measurable business continuity</p>
+                <div className="text-3xl font-black text-green-400">${avoidedLossesMillions}M <span className="text-lg font-medium text-zinc-500">/ event</span></div>
+                <p className="text-xs text-zinc-500 mt-1">Measurable business continuity</p>
               </CardContent>
             </Card>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-[#7c1027] border-b border-[#7c1027]/20 pb-2">Proposed Interventions</h3>
+            <h3 className="text-lg font-bold text-white border-b border-white/10 pb-2">Proposed Interventions</h3>
             
             {projects.map((proj: any, idx: number) => (
-              <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-[#7c1027]/5 border border-[#7c1027]/20">
-                <FileText className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+              <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                <FileText className="w-5 h-5 text-fuchsia-400 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-[#7c1027] text-sm">{proj.title}</h4>
-                  <p className="text-[#7c1027]/70 text-sm mt-1">
+                  <h4 className="font-bold text-white text-sm">{proj.title}</h4>
+                  <p className="text-zinc-400 text-sm mt-1">
                     Status: {proj.status}. Expected to reduce exposure by {proj.exposure_reduction_pct}% and save ${(proj.annual_savings_estimate / 1000).toFixed(0)}k annually.
                   </p>
                 </div>
@@ -195,12 +195,12 @@ export default function FinancePackPage() {
             ))}
             
             {projects.length === 0 && (
-               <div className="text-[#7c1027]/50 text-sm italic py-4 text-center">No interventions found for this portfolio.</div>
+               <div className="text-zinc-500 text-sm italic py-4 text-center">No interventions found for this portfolio.</div>
             )}
           </div>
           
-          <div className="pt-4 border-t border-[#7c1027]/20 text-center">
-            <p className="text-xs text-[#7c1027]/50">
+          <div className="pt-4 border-t border-white/10 text-center">
+            <p className="text-xs text-zinc-500">
               Report generated dynamically via ClimateGuard AI Engine. Deterministic models drive the financial numbers.
             </p>
           </div>

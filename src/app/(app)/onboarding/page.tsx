@@ -76,22 +76,22 @@ export default function OnboardingPage() {
 
   if (loading || success) {
     return (
-      <div className="fixed inset-0 z-[100] bg-[#fdfbf7] flex flex-col items-center justify-center overflow-hidden">
+      <div className="fixed inset-0 z-[100] bg-[#050507] flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center opacity-50">
-          <div className="w-96 h-96 bg-rose-800/20 rounded-full blur-[100px] animate-pulse" />
+          <div className="w-96 h-96 bg-fuchsia-600/20 rounded-full blur-[100px] animate-pulse" />
         </div>
         <div className="relative z-10 max-w-md w-full px-6 text-center space-y-8">
           <div className="flex justify-center mb-12">
             {success ? (
                <CheckCircle2 className="w-16 h-16 text-emerald-500 animate-in zoom-in duration-300" />
             ) : (
-               <Loader2 className="w-16 h-16 text-rose-600 animate-spin" />
+               <Loader2 className="w-16 h-16 text-fuchsia-500 animate-spin" />
             )}
           </div>
-          <h2 className="text-2xl font-bold text-[#7c1027]">
+          <h2 className="text-2xl font-bold text-white">
             {success ? "Data Ingested Successfully!" : "Processing your portfolio..."}
           </h2>
-          <p className="text-[#7c1027]/70">
+          <p className="text-zinc-400">
              {success ? "Redirecting to your tailored dashboard." : "Mapping assets and cross-referencing climate models."}
           </p>
         </div>
@@ -102,25 +102,25 @@ export default function OnboardingPage() {
   return (
     <div className="max-w-4xl mx-auto py-12 px-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-10 text-center">
-        <h1 className="text-4xl font-bold tracking-tight mb-4 text-[#7c1027]">Onboard Your Portfolio</h1>
-        <p className="text-[#7c1027]/70 text-lg">Upload your MSME asset data to generate a dynamic, tailored climate resilience plan.</p>
+        <h1 className="text-4xl font-bold tracking-tight mb-4 text-white">Onboard Your Portfolio</h1>
+        <p className="text-zinc-400 text-lg">Upload your MSME asset data to generate a dynamic, tailored climate resilience plan.</p>
       </div>
 
       <BorderGlow glowColor="236 72 153" backgroundColor="#0c0c10" colors={['#ec4899', '#38bdf8']} animated>
-        <div className="p-8 bg-[#efe5d1]/95 backdrop-blur-xl rounded-2xl border border-[#7c1027]/10">
+        <div className="p-8 bg-[#0c0c10]/95 backdrop-blur-xl rounded-2xl border border-white/5">
           
           <div 
             {...getRootProps()} 
             className={`border-2 border-dashed rounded-xl p-12 text-center cursor-pointer transition-colors duration-200 ${
-              isDragActive ? "border-rose-600 bg-rose-600/5" : "border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800/50"
+              isDragActive ? "border-fuchsia-500 bg-fuchsia-500/5" : "border-zinc-700 hover:border-zinc-500 hover:bg-zinc-800/50"
             }`}
           >
             <input {...getInputProps()} />
-            <UploadCloud className={`w-12 h-12 mx-auto mb-4 ${isDragActive ? "text-rose-500" : "text-[#7c1027]/50"}`} />
-            <h3 className="text-xl font-bold text-[#7c1027] mb-2">
+            <UploadCloud className={`w-12 h-12 mx-auto mb-4 ${isDragActive ? "text-fuchsia-400" : "text-zinc-500"}`} />
+            <h3 className="text-xl font-bold text-white mb-2">
               {isDragActive ? "Drop CSV here" : "Drag & Drop your assets.csv"}
             </h3>
-            <p className="text-[#7c1027]/70 text-sm">or click to browse files</p>
+            <p className="text-zinc-400 text-sm">or click to browse files</p>
           </div>
 
           {error && (
@@ -139,15 +139,15 @@ export default function OnboardingPage() {
                  </div>
                  <button 
                    onClick={handleUpload}
-                   className="bg-rose-800 hover:bg-rose-600 text-[#7c1027] px-6 py-2 rounded-full font-bold transition-colors"
+                   className="bg-fuchsia-600 hover:bg-fuchsia-500 text-white px-6 py-2 rounded-full font-bold transition-colors"
                  >
                    Process Data
                  </button>
               </div>
               
-              <div className="overflow-hidden rounded-xl border border-[#7c1027]/20">
+              <div className="overflow-hidden rounded-xl border border-white/10">
                 <table className="w-full text-sm text-left">
-                  <thead className="text-xs text-[#7c1027]/70 bg-[#7c1027]/5 uppercase">
+                  <thead className="text-xs text-zinc-400 bg-white/5 uppercase">
                     <tr>
                       <th className="px-4 py-3">Facility Name</th>
                       <th className="px-4 py-3">Industry</th>
@@ -156,16 +156,16 @@ export default function OnboardingPage() {
                   </thead>
                   <tbody>
                     {parsedData.slice(0, 3).map((row, i) => (
-                      <tr key={i} className="border-b border-[#7c1027]/10 bg-[#111116]">
-                        <td className="px-4 py-3 text-[#7c1027] font-medium">{row.Facility_Name || 'Unknown'}</td>
-                        <td className="px-4 py-3 text-[#7c1027]/80">{row.Industry_Type || '-'}</td>
-                        <td className="px-4 py-3 text-[#7c1027]/80">{row.City || '-'}, {row.State || '-'}</td>
+                      <tr key={i} className="border-b border-white/5 bg-[#111116]">
+                        <td className="px-4 py-3 text-white font-medium">{row.Facility_Name || 'Unknown'}</td>
+                        <td className="px-4 py-3 text-zinc-300">{row.Industry_Type || '-'}</td>
+                        <td className="px-4 py-3 text-zinc-300">{row.City || '-'}, {row.State || '-'}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
                 {parsedData.length > 3 && (
-                   <div className="px-4 py-3 bg-[#111116] text-[#7c1027]/50 text-xs text-center border-t border-[#7c1027]/10">
+                   <div className="px-4 py-3 bg-[#111116] text-zinc-500 text-xs text-center border-t border-white/5">
                      + {parsedData.length - 3} more records
                    </div>
                 )}
@@ -173,11 +173,11 @@ export default function OnboardingPage() {
             </div>
           )}
 
-          <div className="mt-8 pt-6 border-t border-[#7c1027]/20">
-            <h4 className="text-sm font-bold text-[#7c1027] mb-3 flex items-center gap-2">
-              <FileText className="w-4 h-4 text-[#7c1027]/70" /> Expected CSV Format
+          <div className="mt-8 pt-6 border-t border-white/10">
+            <h4 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
+              <FileText className="w-4 h-4 text-zinc-400" /> Expected CSV Format
             </h4>
-            <div className="bg-black/50 p-4 rounded-lg overflow-x-auto text-xs font-mono text-[#7c1027]/70 border border-[#7c1027]/10">
+            <div className="bg-black/50 p-4 rounded-lg overflow-x-auto text-xs font-mono text-zinc-400 border border-white/5">
               Facility_Name,Industry_Type,City,State,Annual_Revenue,Monthly_Electricity_Cost,Backup_Power_Type<br/>
               "Miami Port",Infrastructure,"Miami","FL",1200000,4500,"Diesel Genset"<br/>
               "Phoenix HQ",Commercial,"Phoenix","AZ",850000,3200,"Solar + Battery"

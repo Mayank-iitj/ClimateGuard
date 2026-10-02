@@ -8,7 +8,7 @@ import BorderGlow from "@/components/ui/border-glow";
 import { createClient } from "@/utils/supabase/client";
 
 const fallbackProjects = [
-  { id: 'PRJ-101', name: 'Miami Port Facility', type: 'Infrastructure', status: 'Active', risk: 'High', value: '$1.2B', icon: <Anchor className="w-5 h-5 text-rose-500" /> },
+  { id: 'PRJ-101', name: 'Miami Port Facility', type: 'Infrastructure', status: 'Active', risk: 'High', value: '$1.2B', icon: <Anchor className="w-5 h-5 text-fuchsia-400" /> },
   { id: 'PRJ-102', name: 'Phoenix Data Center', type: 'Data Center', status: 'Under Review', risk: 'Medium', value: '$850M', icon: <Server className="w-5 h-5 text-cyan-400" /> },
   { id: 'PRJ-103', name: 'London HQ', type: 'Commercial', status: 'Active', risk: 'Low', value: '$450M', icon: <Building2 className="w-5 h-5 text-emerald-400" /> },
   { id: 'PRJ-104', name: 'Shenzhen Assembly', type: 'Industrial', status: 'Active', risk: 'Medium', value: '$2.1B', icon: <Factory className="w-5 h-5 text-amber-400" /> },
@@ -38,7 +38,7 @@ export default function ProjectsPage() {
             icon: p.title.includes('Data') ? <Server className="w-5 h-5 text-cyan-400" /> :
                   p.title.includes('Sensor') ? <Server className="w-5 h-5 text-amber-400" /> :
                   p.title.includes('Efficiency') ? <Factory className="w-5 h-5 text-emerald-400" /> :
-                  <Anchor className="w-5 h-5 text-rose-500" />
+                  <Anchor className="w-5 h-5 text-fuchsia-400" />
           }));
           setProjects(mapped);
         } else {
@@ -57,7 +57,7 @@ export default function ProjectsPage() {
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center h-[60vh]">
-        <Loader2 className="w-8 h-8 text-rose-600 animate-spin" />
+        <Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" />
       </div>
     );
   }
@@ -67,7 +67,7 @@ export default function ProjectsPage() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Projects Portfolio</h1>
-          <p className="text-[#7c1027]/70">Manage and monitor climate risk across all your physical assets.</p>
+          <p className="text-zinc-400">Manage and monitor climate risk across all your physical assets.</p>
         </div>
         <button className="bg-white text-black hover:bg-zinc-200 font-bold px-6 py-2.5 rounded-full transition-colors text-sm">
           Add New Project
@@ -97,26 +97,26 @@ export default function ProjectsPage() {
           >
             <div className="p-6 relative z-10 flex flex-col h-full">
               <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-[#7c1027]/5 rounded-xl border border-[#7c1027]/20 backdrop-blur-sm">
+                <div className="p-3 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
                   {project.icon}
                 </div>
-                <button className="text-[#7c1027]/50 hover:text-[#7c1027] transition-colors">
+                <button className="text-zinc-500 hover:text-white transition-colors">
                   <MoreHorizontal className="w-5 h-5" />
                 </button>
               </div>
               
               <div className="mb-6 flex-1">
-                <h3 className="text-lg font-bold text-[#7c1027] leading-tight">{project.name}</h3>
-                <p className="text-xs text-[#7c1027]/50 mt-1">{project.id} • {project.type}</p>
+                <h3 className="text-lg font-bold text-white leading-tight">{project.name}</h3>
+                <p className="text-xs text-zinc-500 mt-1">{project.id} • {project.type}</p>
               </div>
 
-              <div className="space-y-4 pt-4 border-t border-[#7c1027]/20">
+              <div className="space-y-4 pt-4 border-t border-white/10">
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-[#7c1027]/70">Asset Value</span>
-                  <span className="font-bold text-[#7c1027]">{project.value}</span>
+                  <span className="text-zinc-400">Asset Value</span>
+                  <span className="font-bold text-white">{project.value}</span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-[#7c1027]/70">Risk Level</span>
+                  <span className="text-zinc-400">Risk Level</span>
                   <span className={`font-bold px-2 py-0.5 rounded text-xs ${
                     project.risk === 'Critical' ? 'bg-rose-500/20 text-rose-400' :
                     project.risk === 'High' ? 'bg-orange-500/20 text-orange-400' :
@@ -127,8 +127,8 @@ export default function ProjectsPage() {
                   </span>
                 </div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="text-[#7c1027]/70">Status</span>
-                  <span className="text-[#7c1027]/80">{project.status}</span>
+                  <span className="text-zinc-400">Status</span>
+                  <span className="text-zinc-300">{project.status}</span>
                 </div>
               </div>
             </div>

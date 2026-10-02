@@ -6,13 +6,13 @@ import ChatCopilot from '@/components/ui/chat-copilot';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen bg-[#fdfbf7] text-[#7c1027] selection:bg-rose-600/30 overflow-hidden font-sans">
+    <div className="flex h-screen bg-[#050507] text-white selection:bg-fuchsia-500/30 overflow-hidden font-sans">
       {/* Sidebar (Desktop) */}
-      <aside className="w-64 border-r border-[#7c1027]/20 bg-[#efe5d1] hidden md:flex flex-col">
-        <div className="h-16 flex items-center px-6 border-b border-[#7c1027]/20">
+      <aside className="w-64 border-r border-white/10 bg-[#0c0c10] hidden md:flex flex-col">
+        <div className="h-16 flex items-center px-6 border-b border-white/10">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-800 to-rose-400 flex items-center justify-center shadow-[0_0_15px_rgba(124,16,39,0.3)]">
-              <Globe className="w-4 h-4 text-[#7c1027]" />
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-fuchsia-600 to-pink-500 flex items-center justify-center shadow-[0_0_15px_rgba(236,72,153,0.5)]">
+              <Globe className="w-4 h-4 text-white" />
             </div>
             <span className="font-bold text-lg tracking-tight">ClimateGuard</span>
           </Link>
@@ -26,10 +26,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <NavItem href="/finance-pack" icon={<Folder size={20} />} label="Reports" />
         </nav>
 
-        <div className="p-4 border-t border-[#7c1027]/20">
+        <div className="p-4 border-t border-white/10">
           <NavItem href="/settings" icon={<Settings size={20} />} label="Settings" />
           <form action={logout}>
-            <button type="submit" className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#7c1027]/70 hover:text-[#7c1027] hover:bg-[#7c1027]/5 transition-colors mt-2 text-left">
+            <button type="submit" className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 transition-colors mt-2 text-left">
               <LogOut size={20} />
               <span className="font-medium text-sm">Log Out</span>
             </button>
@@ -40,13 +40,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
         {/* Header (Mobile) */}
-        <header className="h-16 border-b border-[#7c1027]/20 bg-[#efe5d1] flex items-center justify-between px-4 md:hidden">
+        <header className="h-16 border-b border-white/10 bg-[#0c0c10] flex items-center justify-between px-4 md:hidden">
           <Link href="/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-rose-800 to-rose-400 flex items-center justify-center">
-              <Globe className="w-4 h-4 text-[#7c1027]" />
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-fuchsia-600 to-pink-500 flex items-center justify-center">
+              <Globe className="w-4 h-4 text-white" />
             </div>
           </Link>
-          <Button variant="ghost" size="icon" className="text-[#7c1027]/70 hover:text-[#7c1027]">
+          <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-white">
             <Menu size={24} />
           </Button>
         </header>
@@ -57,8 +57,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <div className="flex-1 overflow-y-auto p-4 md:p-8 relative">
            {/* Global Background Glows */}
           <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-rose-800/5 blur-[150px]" />
-            <div className="absolute bottom-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-rose-400/5 blur-[120px]" />
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-fuchsia-600/5 blur-[150px]" />
+            <div className="absolute bottom-[20%] right-[-10%] w-[30%] h-[50%] rounded-full bg-pink-500/5 blur-[120px]" />
           </div>
           
           <div className="relative z-10 max-w-6xl mx-auto h-full">
@@ -77,7 +77,7 @@ function NavItem({ href, icon, label }: { href: string, icon: React.ReactNode, l
   // In a real app, use usePathname to set active state. 
   // For simplicity, we'll use a clean hover effect.
   return (
-    <Link href={href} className="flex items-center gap-3 px-4 py-3 rounded-xl text-[#7c1027]/70 hover:text-[#7c1027] hover:bg-[#7c1027]/5 hover:shadow-[inset_2px_0_0_#ec4899] transition-all">
+    <Link href={href} className="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:text-white hover:bg-white/5 hover:shadow-[inset_2px_0_0_#ec4899] transition-all">
       {icon}
       <span className="font-medium text-sm">{label}</span>
     </Link>

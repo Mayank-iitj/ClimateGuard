@@ -66,7 +66,7 @@ export default function StressTestPage() {
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center h-[60vh]">
-        <Loader2 className="w-8 h-8 text-rose-600 animate-spin" />
+        <Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" />
       </div>
     );
   }
@@ -74,35 +74,35 @@ export default function StressTestPage() {
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-6xl mx-auto pb-12">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight mb-2 text-[#7c1027]">Financial ROI & Impact Calculator</h1>
-        <p className="text-[#7c1027]/70">Calculate the exact financial return of climate resilience investments based on your uploaded portfolio.</p>
+        <h1 className="text-3xl font-bold tracking-tight mb-2 text-white">Financial ROI & Impact Calculator</h1>
+        <p className="text-zinc-400">Calculate the exact financial return of climate resilience investments based on your uploaded portfolio.</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Controls Sidebar */}
         <div className="space-y-6">
-          <Card className="bg-[#efe5d1]/80 border-rose-600/20 backdrop-blur-md shadow-[0_0_30px_rgba(236,72,153,0.1)]">
+          <Card className="bg-[#0c0c10]/80 border-fuchsia-500/20 backdrop-blur-md shadow-[0_0_30px_rgba(236,72,153,0.1)]">
             <CardHeader>
-              <CardTitle className="text-[#7c1027]">Investment Variables</CardTitle>
-              <CardDescription className="text-[#7c1027]/70">Adjust sliders from your DB baseline</CardDescription>
+              <CardTitle className="text-white">Investment Variables</CardTitle>
+              <CardDescription className="text-zinc-400">Adjust sliders from your DB baseline</CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
               
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <label className="text-sm font-medium flex items-center gap-2 text-rose-500">
+                  <label className="text-sm font-medium flex items-center gap-2 text-fuchsia-400">
                     <ThermometerSun className="w-4 h-4" /> Capital Expenditure
                   </label>
-                  <span className="text-sm font-bold text-[#7c1027]">${investment}M</span>
+                  <span className="text-sm font-bold text-white">${investment}M</span>
                 </div>
                 <input 
                   type="range" 
                   min="1" max="100" step="1" 
                   value={investment} 
                   onChange={(e) => setInvestment(parseFloat(e.target.value))}
-                  className="w-full accent-rose-600" 
+                  className="w-full accent-fuchsia-500" 
                 />
-                <div className="flex justify-between text-xs text-[#7c1027]/50">
+                <div className="flex justify-between text-xs text-zinc-500">
                   <span>$1M</span>
                   <span>$100M</span>
                 </div>
@@ -113,7 +113,7 @@ export default function StressTestPage() {
                   <label className="text-sm font-medium flex items-center gap-2 text-rose-400">
                     <Waves className="w-4 h-4" /> Expected Annual Damages
                   </label>
-                  <span className="text-sm font-bold text-[#7c1027]">${damages}M/yr</span>
+                  <span className="text-sm font-bold text-white">${damages}M/yr</span>
                 </div>
                 <input 
                   type="range" 
@@ -122,7 +122,7 @@ export default function StressTestPage() {
                   onChange={(e) => setDamages(parseFloat(e.target.value))}
                   className="w-full accent-rose-500" 
                 />
-                <div className="flex justify-between text-xs text-[#7c1027]/50">
+                <div className="flex justify-between text-xs text-zinc-500">
                   <span>$1M</span>
                   <span>$50M</span>
                 </div>
@@ -133,7 +133,7 @@ export default function StressTestPage() {
                   <label className="text-sm font-medium flex items-center gap-2 text-blue-400">
                     <Wind className="w-4 h-4" /> Timeline (Years)
                   </label>
-                  <span className="text-sm font-bold text-[#7c1027]">{timeline} Years</span>
+                  <span className="text-sm font-bold text-white">{timeline} Years</span>
                 </div>
                 <input 
                   type="range" 
@@ -142,7 +142,7 @@ export default function StressTestPage() {
                   onChange={(e) => setTimeline(parseInt(e.target.value))}
                   className="w-full accent-blue-500" 
                 />
-                <div className="flex justify-between text-xs text-[#7c1027]/50">
+                <div className="flex justify-between text-xs text-zinc-500">
                   <span>1 Yr</span>
                   <span>10 Yrs</span>
                 </div>
@@ -161,15 +161,15 @@ export default function StressTestPage() {
             colors={['#ec4899', '#38bdf8', '#818cf8']}
             animated={true}
           >
-            <div className="p-6 h-full flex flex-col bg-[#efe5d1]/95 backdrop-blur-xl rounded-2xl">
+            <div className="p-6 h-full flex flex-col bg-[#0c0c10]/95 backdrop-blur-xl rounded-2xl">
               <div className="mb-6 flex justify-between items-start">
                 <div>
-                  <h3 className="text-xl font-bold text-[#7c1027]">Cost of Inaction vs. Net ROI</h3>
-                  <p className="text-sm text-[#7c1027]/70">Comparing cumulative damages against resilience investment returns.</p>
+                  <h3 className="text-xl font-bold text-white">Cost of Inaction vs. Net ROI</h3>
+                  <p className="text-sm text-zinc-400">Comparing cumulative damages against resilience investment returns.</p>
                 </div>
-                <div className="bg-rose-600/10 px-4 py-2 rounded-xl border border-rose-600/30">
-                   <div className="text-xs text-rose-500">Projected Savings</div>
-                   <div className="text-2xl font-bold text-[#7c1027]">${chartData[chartData.length - 1]?.netROI}M</div>
+                <div className="bg-fuchsia-500/10 px-4 py-2 rounded-xl border border-fuchsia-500/30">
+                   <div className="text-xs text-fuchsia-400">Projected Savings</div>
+                   <div className="text-2xl font-bold text-white">${chartData[chartData.length - 1]?.netROI}M</div>
                 </div>
               </div>
               <div className="flex-1 min-h-[400px]">

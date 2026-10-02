@@ -63,7 +63,7 @@ export default function OverviewPage() {
   if (loading) {
     return (
       <div className="flex-1 flex items-center justify-center h-[60vh]">
-        <Loader2 className="w-8 h-8 text-rose-600 animate-spin" />
+        <Loader2 className="w-8 h-8 text-fuchsia-500 animate-spin" />
       </div>
     );
   }
@@ -72,10 +72,10 @@ export default function OverviewPage() {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-6xl mx-auto">
       
       {/* Header section matching Page 5 */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-[#7c1027]/20 pb-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-white/10 pb-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight text-[#7c1027] mb-1">{data.profile.company_name}</h1>
-          <p className="text-[#7c1027]/70">{data.profile.industry} | {data.profile.location}</p>
+          <h1 className="text-3xl font-bold tracking-tight text-white mb-1">{data.profile.company_name}</h1>
+          <p className="text-zinc-400">{data.profile.industry} | {data.profile.location}</p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium">
           Assessment complete <CheckCircle2 className="w-4 h-4" />
@@ -96,15 +96,15 @@ export default function OverviewPage() {
 
           {/* Risks Identified Section */}
           <div>
-            <h3 className="text-lg font-bold text-[#7c1027] mb-4">Risks identified</h3>
-            <Card className="bg-[#efe5d1]/80 border-[#7c1027]/20 backdrop-blur-md overflow-hidden">
+            <h3 className="text-lg font-bold text-white mb-4">Risks identified</h3>
+            <Card className="bg-[#0c0c10]/80 border-white/10 backdrop-blur-md overflow-hidden">
               <div className="divide-y divide-white/5">
                 <RiskRow name="Extreme Heat" level="HIGH" colorClass="text-red-400" />
                 <RiskRow name="Power Dependence" level="HIGH" colorClass="text-red-400" />
                 <RiskRow name="Water Stress" level="MEDIUM-HIGH" colorClass="text-orange-400" />
                 <RiskRow name="Supply Disruption" level="MEDIUM" colorClass="text-amber-400" />
               </div>
-              <div className="p-4 bg-[#7c1027]/5 text-xs text-[#7c1027]/50 font-medium tracking-wide">
+              <div className="p-4 bg-white/5 text-xs text-zinc-500 font-medium tracking-wide">
                 Illustrative model output
               </div>
             </Card>
@@ -113,12 +113,12 @@ export default function OverviewPage() {
         </div>
 
         {/* Right CTA Area */}
-        <div className="flex flex-col items-center justify-center p-8 rounded-2xl border border-[#7c1027]/20 bg-gradient-to-br from-white/5 to-transparent">
-          <div className="w-16 h-16 rounded-full bg-rose-600/20 flex items-center justify-center mb-6 border border-rose-600/30">
-            <Globe className="w-8 h-8 text-rose-500" />
+        <div className="flex flex-col items-center justify-center p-8 rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-transparent">
+          <div className="w-16 h-16 rounded-full bg-fuchsia-500/20 flex items-center justify-center mb-6 border border-fuchsia-500/30">
+            <Globe className="w-8 h-8 text-fuchsia-400" />
           </div>
-          <h3 className="text-xl font-bold text-[#7c1027] text-center mb-2">Ready to act?</h3>
-          <p className="text-[#7c1027]/70 text-center text-sm mb-8">Translate this exposure into an actionable business resilience plan.</p>
+          <h3 className="text-xl font-bold text-white text-center mb-2">Ready to act?</h3>
+          <p className="text-zinc-400 text-center text-sm mb-8">Translate this exposure into an actionable business resilience plan.</p>
           
           <StarBorder as={Link as any} href="/resilience-plan" color="#f472b6" speed="4s" backgroundColor="#111116" textColor="#ffffff" borderColor="#333333" className="w-full hover:scale-105 transition-transform">
             <span className="font-bold text-sm px-4">GENERATE RESILIENCE PLAN</span>
@@ -132,15 +132,15 @@ export default function OverviewPage() {
 
 function ScoreCard({ title, score, colorClass }: { title: string, score: number, colorClass: string }) {
   return (
-    <Card className="bg-[#7c1027]/5 border-[#7c1027]/20 backdrop-blur-md">
+    <Card className="bg-white/5 border-white/10 backdrop-blur-md">
       <CardContent className="p-6">
-        <h4 className="text-sm font-medium text-[#7c1027]/70 mb-4">{title}</h4>
+        <h4 className="text-sm font-medium text-zinc-400 mb-4">{title}</h4>
         <div className="flex items-baseline gap-1 mb-4">
-          <span className="text-5xl font-black text-[#7c1027]">{score}</span>
-          <span className="text-lg text-[#7c1027]/50 font-medium">/ 100</span>
+          <span className="text-5xl font-black text-white">{score}</span>
+          <span className="text-lg text-zinc-500 font-medium">/ 100</span>
         </div>
         {/* Simple progress bar representation */}
-        <div className="h-2 w-full bg-[#7c1027]/10 rounded-full overflow-hidden">
+        <div className="h-2 w-full bg-white/10 rounded-full overflow-hidden">
           <div className={`h-full ${colorClass}`} style={{ width: `${score}%` }}></div>
         </div>
       </CardContent>
@@ -150,8 +150,8 @@ function ScoreCard({ title, score, colorClass }: { title: string, score: number,
 
 function RiskRow({ name, level, colorClass }: { name: string, level: string, colorClass: string }) {
   return (
-    <div className="flex items-center justify-between p-5 hover:bg-[#7c1027]/5 transition-colors">
-      <span className="text-[#7c1027]/80 font-medium">{name}</span>
+    <div className="flex items-center justify-between p-5 hover:bg-white/5 transition-colors">
+      <span className="text-zinc-300 font-medium">{name}</span>
       <span className={`font-bold text-sm tracking-wide ${colorClass}`}>{level}</span>
     </div>
   )

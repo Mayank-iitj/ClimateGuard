@@ -150,9 +150,9 @@ export default function ChatCopilot() {
           >
             <Button
               onClick={() => setIsOpen(true)}
-              className="w-14 h-14 rounded-full bg-gradient-to-r from-rose-800 to-rose-400 hover:from-rose-600 hover:to-pink-400 shadow-[0_0_20px_rgba(236,72,153,0.4)] border-0"
+              className="w-14 h-14 rounded-full bg-gradient-to-r from-fuchsia-600 to-pink-500 hover:from-fuchsia-500 hover:to-pink-400 shadow-[0_0_20px_rgba(236,72,153,0.4)] border-0"
             >
-              <Cloud className="w-6 h-6 text-[#7c1027]" />
+              <Cloud className="w-6 h-6 text-white" />
             </Button>
           </motion.div>
         )}
@@ -167,26 +167,26 @@ export default function ChatCopilot() {
             transition={{ duration: 0.2 }}
             className="fixed bottom-6 right-6 z-50 w-80 md:w-96 shadow-2xl"
           >
-            <Card className="bg-[#efe5d1]/95 border-rose-600/20 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col h-[500px] overflow-hidden">
+            <Card className="bg-[#0c0c10]/95 border-fuchsia-500/20 backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col h-[500px] overflow-hidden">
               
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-[#7c1027]/20 bg-gradient-to-r from-fuchsia-900/20 to-transparent">
+              <div className="flex items-center justify-between p-4 border-b border-white/10 bg-gradient-to-r from-fuchsia-900/20 to-transparent">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-rose-600/20 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-rose-500" />
+                  <div className="w-8 h-8 rounded-full bg-fuchsia-500/20 flex items-center justify-center">
+                    <Bot className="w-4 h-4 text-fuchsia-400" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#7c1027] text-sm">Climate Copilot</h3>
-                    <p className="text-xs text-[#7c1027]/70">Powered by AI</p>
+                    <h3 className="font-bold text-white text-sm">Climate Copilot</h3>
+                    <p className="text-xs text-zinc-400">Powered by AI</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
                   {messages.length > 1 && (
-                    <Button variant="ghost" size="icon" onClick={generatePDFReport} title="Download Report" className="text-[#7c1027]/70 hover:text-rose-500 hover:bg-rose-600/10 rounded-full h-8 w-8">
+                    <Button variant="ghost" size="icon" onClick={generatePDFReport} title="Download Report" className="text-zinc-400 hover:text-fuchsia-400 hover:bg-fuchsia-500/10 rounded-full h-8 w-8">
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                     </Button>
                   )}
-                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="text-[#7c1027]/70 hover:text-[#7c1027] hover:bg-[#7c1027]/10 rounded-full h-8 w-8">
+                  <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="text-zinc-400 hover:text-white hover:bg-white/10 rounded-full h-8 w-8">
                     <X className="w-4 h-4" />
                   </Button>
                 </div>
@@ -196,13 +196,13 @@ export default function ChatCopilot() {
               <div className="flex-1 overflow-y-auto p-4 space-y-4">
                 {messages.map((msg) => (
                   <div key={msg.id} className={`flex gap-3 ${msg.role === "user" ? "flex-row-reverse" : ""}`}>
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === "user" ? "bg-zinc-800" : "bg-rose-600/20"}`}>
-                      {msg.role === "user" ? <User className="w-4 h-4 text-[#7c1027]/80" /> : <Bot className="w-4 h-4 text-rose-500" />}
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === "user" ? "bg-zinc-800" : "bg-fuchsia-500/20"}`}>
+                      {msg.role === "user" ? <User className="w-4 h-4 text-zinc-300" /> : <Bot className="w-4 h-4 text-fuchsia-400" />}
                     </div>
                     <div className={`p-3 rounded-2xl max-w-[80%] text-sm ${
                       msg.role === "user" 
-                        ? "bg-zinc-800 text-[#7c1027] rounded-tr-sm" 
-                        : "bg-fuchsia-900/20 border border-rose-600/10 text-zinc-200 rounded-tl-sm whitespace-pre-wrap"
+                        ? "bg-zinc-800 text-white rounded-tr-sm" 
+                        : "bg-fuchsia-900/20 border border-fuchsia-500/10 text-zinc-200 rounded-tl-sm whitespace-pre-wrap"
                     }`}>
                       {msg.content}
                     </div>
@@ -211,13 +211,13 @@ export default function ChatCopilot() {
                 
                 {isLoading && (
                   <div className="flex gap-3">
-                    <div className="w-8 h-8 rounded-full bg-rose-600/20 flex items-center justify-center shrink-0">
-                      <Bot className="w-4 h-4 text-rose-500" />
+                    <div className="w-8 h-8 rounded-full bg-fuchsia-500/20 flex items-center justify-center shrink-0">
+                      <Bot className="w-4 h-4 text-fuchsia-400" />
                     </div>
-                    <div className="p-3 rounded-2xl bg-fuchsia-900/20 border border-rose-600/10 rounded-tl-sm flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
-                      <span className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
-                      <span className="w-1.5 h-1.5 bg-rose-500 rounded-full animate-bounce"></span>
+                    <div className="p-3 rounded-2xl bg-fuchsia-900/20 border border-fuchsia-500/10 rounded-tl-sm flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 bg-fuchsia-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                      <span className="w-1.5 h-1.5 bg-fuchsia-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                      <span className="w-1.5 h-1.5 bg-fuchsia-400 rounded-full animate-bounce"></span>
                     </div>
                   </div>
                 )}
@@ -235,15 +235,15 @@ export default function ChatCopilot() {
               </div>
 
               {/* Input */}
-              <form onSubmit={handleSubmit} className="p-3 border-t border-[#7c1027]/20 bg-black/20 flex gap-2">
+              <form onSubmit={handleSubmit} className="p-3 border-t border-white/10 bg-black/20 flex gap-2">
                 <input 
                   type="text" 
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask about your resilience plan..." 
-                  className="flex-1 bg-[#7c1027]/5 border border-[#7c1027]/20 rounded-full px-4 text-sm text-[#7c1027] focus:outline-none focus:border-rose-600 transition-colors"
+                  className="flex-1 bg-white/5 border border-white/10 rounded-full px-4 text-sm text-white focus:outline-none focus:border-fuchsia-500 transition-colors"
                 />
-                <Button type="submit" size="icon" disabled={!(input || "").trim() || isLoading} className="bg-rose-800 hover:bg-fuchsia-700 text-[#7c1027] rounded-full shrink-0">
+                <Button type="submit" size="icon" disabled={!(input || "").trim() || isLoading} className="bg-fuchsia-600 hover:bg-fuchsia-700 text-white rounded-full shrink-0">
                   <Send className="w-4 h-4" />
                 </Button>
               </form>
